@@ -605,12 +605,13 @@ button {
 
 .name-card {
   width: 100%;
+  min-height: 68px;
   border: 1px solid var(--border);
   border-radius: 18px;
   background: var(--card-bg);
-  padding: 12px 14px;
+  padding: 13px 14px;
   display: grid;
-  grid-template-columns: 32px 76px minmax(0, 1fr) 24px;
+  grid-template-columns: 34px minmax(96px, 120px) minmax(0, 1fr) 18px;
   gap: 12px;
   align-items: center;
   text-align: left;
@@ -620,14 +621,19 @@ button {
   transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
 }
 
+.name-card.is-long {
+  min-height: 88px;
+  padding: 15px 14px;
+}
+
 .name-card:active {
   transform: scale(0.98);
   background: var(--surface);
 }
 
 .number-badge {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 10px;
   background: var(--blue-soft);
   color: var(--blue);
@@ -636,16 +642,23 @@ button {
   display: grid;
   place-items: center;
   flex-shrink: 0;
+  align-self: center;
 }
 
 .card-arabic {
   font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", "Geeza Pro", serif;
-  font-size: 22px;
-  line-height: 1.45;
+  font-size: 21px;
+  line-height: 1.35;
   color: var(--navy);
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: normal;
   direction: rtl;
+}
+
+.card-arabic.is-long {
+  font-size: 18px;
+  line-height: 1.35;
 }
 
 [data-theme="dark"] .card-arabic {

@@ -336,10 +336,19 @@ function renderList() {
 // Render Card HTML
 function generateCardHTML(item) {
   const isFav = AppState.favorites.includes(item.number);
+  const isLong = item.arabic.length > 15;
+
+  let arabicDisplay = escapeHTML(item.arabic);
+  if (item.number === 85) {
+    arabicDisplay = 'ذُو الْجَلَالِ<br>وَالْإِكْرَامِ';
+  } else if (item.number === 84) {
+    arabicDisplay = 'مَالِكُ الْـمُلْكِ';
+  }
+
   return `
-    <button class="name-card" onclick="openDetail(${item.number})" aria-label="Nama ${item.number}: ${item.latin}">
+    <button class="name-card ${isLong ? 'is-long' : ''}" onclick="openDetail(${item.number})" aria-label="Nama ${item.number}: ${item.latin}">
       <span class="number-badge">${item.number}</span>
-      <span class="card-arabic" lang="ar" dir="rtl">${escapeHTML(item.arabic)}</span>
+      <span class="card-arabic ${isLong ? 'is-long' : ''}" lang="ar" dir="rtl">${arabicDisplay}</span>
       <div class="card-info">
         <span class="card-latin">
           ${escapeHTML(item.latin)}
