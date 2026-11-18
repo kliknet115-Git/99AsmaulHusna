@@ -1156,101 +1156,6 @@ button {
 }
 
 /* ==========================================================================
-   QUIZ / HAFALAN SCREEN
-   ========================================================================== */
-.quiz-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 22px 18px;
-  box-shadow: var(--shadow-md);
-  margin-top: 14px;
-  text-align: center;
-}
-
-.quiz-score-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  border-radius: 99px;
-  background: var(--blue-soft);
-  color: var(--blue);
-  font-size: 11px;
-  font-weight: 750;
-  margin-bottom: 14px;
-}
-
-.quiz-arabic {
-  font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", serif;
-  font-size: 46px;
-  color: var(--navy);
-  margin: 10px 0;
-  direction: rtl;
-}
-
-[data-theme="dark"] .quiz-arabic {
-  color: #ffffff;
-}
-
-.quiz-latin-hint {
-  font-size: 16px;
-  color: var(--muted);
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-.quiz-options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.quiz-option-btn {
-  width: 100%;
-  padding: 13px 16px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: var(--page);
-  color: var(--ink);
-  font-size: 13px;
-  font-weight: 650;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.quiz-option-btn:active {
-  transform: scale(0.98);
-}
-
-.quiz-option-btn.correct {
-  background: #dcfce7;
-  border-color: #86efac;
-  color: #166534;
-}
-
-.quiz-option-btn.wrong {
-  background: #fee2e2;
-  border-color: #fca5a5;
-  color: #991b1b;
-}
-
-.quiz-next-btn {
-  margin-top: 18px;
-  width: 100%;
-  padding: 13px;
-  border-radius: 14px;
-  background: var(--blue);
-  color: white;
-  font-weight: 750;
-  font-size: 13px;
-  cursor: pointer;
-  display: none;
-}
-
-/* ==========================================================================
    ABOUT SCREEN
    ========================================================================== */
 .about-card {
@@ -1338,7 +1243,7 @@ button {
   -webkit-backdrop-filter: blur(25px);
   border-top: 1px solid var(--border);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   box-shadow: 0 -4px 20px rgba(15, 33, 60, 0.08);
   transition: background 0.3s;
 }

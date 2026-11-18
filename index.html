@@ -109,16 +109,15 @@
           <span id="lastReadText">Lanjutkan membaca</span>
         </button>
 
-        <button class="action-tile" onclick="showScreen('quiz')">
+        <button class="action-tile" onclick="showScreen('about')">
           <span class="tile-icon gold">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <circle cx="12" cy="12" r="9"/>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
+              <path d="M12 11v5m0-8h.01" stroke-linecap="round"/>
             </svg>
           </span>
-          <strong>Kuis Hafalan</strong>
-          <span>Uji ingatan Anda</span>
+          <strong>Tentang Aplikasi</strong>
+          <span>Informasi & panduan</span>
         </button>
       </div>
 
@@ -288,26 +287,7 @@
       <div id="favoriteList" class="name-list"></div>
     </section>
 
-    <!-- 5. SCREEN: QUIZ / HAFALAN MODE -->
-    <section id="quiz" class="screen">
-      <div class="page-heading">
-        <div class="eyebrow">Asah Ingatan</div>
-        <h1>Kuis Hafalan</h1>
-        <p>Pilih arti yang tepat untuk nama Allah yang ditampilkan di bawah ini.</p>
-      </div>
-
-      <div class="quiz-card">
-        <div class="quiz-score-badge" id="quizScoreBadge">Skor: 0 / 0</div>
-        <div class="quiz-arabic" id="quizArabic" lang="ar" dir="rtl">الرَّحْمَٰنُ</div>
-        <div class="quiz-latin-hint" id="quizLatinHint">1. Ar-Rahman</div>
-        <div class="quiz-options" id="quizOptions"></div>
-        <button id="quizNextBtn" class="quiz-next-btn" onclick="nextQuizQuestion()">
-          Lanjut ke Soal Berikutnya →
-        </button>
-      </div>
-    </section>
-
-    <!-- 6. SCREEN: ABOUT (TENTANG & PANDUAN IPHONE) -->
+    <!-- 5. SCREEN: ABOUT (TENTANG & PANDUAN IPHONE) -->
     <section id="about" class="screen">
       <div class="page-heading">
         <div class="eyebrow">Tentang Aplikasi</div>
@@ -326,7 +306,6 @@
           <li><strong>Optimasi iPhone Safari:</strong> Mengikuti panduan Apple Human Interface Guidelines, dukungan Safe Area notch/island, serta haptic feedback.</li>
           <li><strong>Offline 100%:</strong> Dilengkapi Service Worker sehingga dapat diakses tanpa koneksi internet setelah dibuka pertama kali.</li>
           <li><strong>Tasbih Dzikir:</strong> Penghitung digital untuk setiap nama dengan target 33x, 99x, atau tak terbatas.</li>
-          <li><strong>Kuis Hafalan:</strong> Sarana interaktif untuk memudahkan hafalan 99 Asmaul Husna.</li>
         </ul>
 
         <h2>Cara Pasang di iPhone (Safari):</h2>
@@ -376,15 +355,6 @@
           <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
         </svg>
         <span>Favorit</span>
-      </button>
-
-      <button class="nav-btn" data-screen="quiz" onclick="showScreen('quiz')">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-          <line x1="12" y1="17" x2="12.01" y2="17"/>
-        </svg>
-        <span>Kuis</span>
       </button>
 
       <button class="nav-btn" data-screen="about" onclick="showScreen('about')">

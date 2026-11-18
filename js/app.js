@@ -14,10 +14,7 @@ const AppState = {
   lastReadId: null,
   theme: 'light',
   tasbihCount: 0,
-  tasbihTarget: 33,
-  quizCurrentQuestion: null,
-  quizScore: 0,
-  quizTotal: 0
+  tasbihTarget: 33
 };
 
 // Storage Helpers
@@ -62,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (paramScreen && ['home', 'list', 'favorites', 'quiz', 'about'].includes(paramScreen)) {
+  if (paramScreen && ['home', 'list', 'favorites', 'about'].includes(paramScreen)) {
     showScreen(paramScreen);
   } else {
     showScreen('home');
@@ -131,8 +128,6 @@ function showScreen(screenId) {
     renderList();
   } else if (screenId === 'favorites') {
     renderFavorites();
-  } else if (screenId === 'quiz') {
-    initQuiz();
   }
 
   updateHomeMeta();
@@ -610,91 +605,6 @@ async function shareCurrent() {
         showToast('Fitur bagikan tidak didukung peramban ini');
       }
     }
-  }
-}
-
-// Interactive Quiz / Hafalan Mode
-function initQuiz() {
-  AppState.quizScore = 0;
-  AppState.quizTotal = 0;
-  updateQuizScoreUI();
-  nextQuizQuestion();
-}
-
-function nextQuizQuestion() {
-  // Pick random target item
-  const randomIndex = Math.floor(Math.random() * ASMAUL_HUSNA.length);
-  const target = ASMAUL_HUSNA[randomIndex];
-  AppState.quizCurrentQuestion = target;
-
-  // Pick 3 random wrong options
-  const wrongOptions = [];
-  while (wrongOptions.length < 3) {
-    const r = Math.floor(Math.random() * ASMAUL_HUSNA.length);
-    if (r !== randomIndex && !wrongOptions.includes(r)) {
-      wrongOptions.push(r);
-    }
-  }
-
-  // Combine and shuffle
-  const options = [target, ...wrongOptions.map((i) => ASMAUL_HUSNA[i])].sort(
-    () => Math.random() - 0.5
-  );
-
-  // Render question UI
-  document.getElementById('quizArabic').textContent = target.arabic;
-  document.getElementById('quizLatinHint').textContent = `${target.number}. ${target.latin}`;
-
-  const optionsContainer = document.getElementById('quizOptions');
-  optionsContainer.innerHTML = options
-    .map(
-      (opt) => `
-    <button class="quiz-option-btn" onclick="submitQuizAnswer(${opt.number}, this)">
-      ${escapeHTML(opt.meaning)}
-    </button>
-  `
-    )
-    .join('');
-
-  document.getElementById('quizNextBtn').style.display = 'none';
-}
-
-function submitQuizAnswer(selectedNumber, buttonEl) {
-  const target = AppState.quizCurrentQuestion;
-  if (!target) return;
-
-  AppState.quizTotal++;
-  const isCorrect = selectedNumber === target.number;
-
-  // Disable all option buttons
-  document.querySelectorAll('.quiz-option-btn').forEach((btn) => {
-    btn.disabled = true;
-  });
-
-  if (isCorrect) {
-    AppState.quizScore++;
-    buttonEl.classList.add('correct');
-    showToast('Tepat sekali! Ma syaa Allah 🎉');
-    triggerHaptic();
-  } else {
-    buttonEl.classList.add('wrong');
-    // Highlight correct one
-    document.querySelectorAll('.quiz-option-btn').forEach((btn) => {
-      if (btn.textContent.trim() === target.meaning) {
-        btn.classList.add('correct');
-      }
-    });
-    showToast(`Jawaban yang benar: ${target.meaning}`);
-  }
-
-  updateQuizScoreUI();
-  document.getElementById('quizNextBtn').style.display = 'block';
-}
-
-function updateQuizScoreUI() {
-  const badge = document.getElementById('quizScoreBadge');
-  if (badge) {
-    badge.textContent = `Skor: ${AppState.quizScore} / ${AppState.quizTotal}`;
   }
 }
 
