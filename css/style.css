@@ -114,14 +114,14 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(78px + var(--safe-bottom));
+  padding-bottom: calc(56px + var(--safe-bottom));
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
 }
 
 /* Top App Bar */
 .topbar {
-  height: calc(56px + var(--safe-top));
-  padding: var(--safe-top) 18px 0;
+  height: calc(48px + var(--safe-top));
+  padding: var(--safe-top) 14px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -142,9 +142,9 @@ button {
 .brand-mini {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-weight: 750;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--navy);
   letter-spacing: -0.3px;
 }
@@ -154,15 +154,15 @@ button {
 }
 
 .brand-mark {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: grid;
   place-items: center;
-  border-radius: 10px;
+  border-radius: 9px;
   background: linear-gradient(135deg, var(--navy-deep), var(--navy-light));
   color: #f7d58a;
   font-family: "Noto Naskh Arabic", "Traditional Arabic", serif;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: bold;
   box-shadow: 0 3px 8px rgba(16, 43, 80, 0.25);
 }
@@ -174,9 +174,9 @@ button {
 }
 
 .icon-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   display: grid;
   place-items: center;
   color: var(--navy);
@@ -198,7 +198,11 @@ button {
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  padding: 14px 16px 20px;
+  padding: 10px 14px 16px;
+}
+
+#detail.screen {
+  padding: 4px 10px 8px;
 }
 
 .screen.active {
@@ -211,26 +215,26 @@ button {
    HERO BANNER
    ========================================================================== */
 .hero {
-  min-height: 230px;
-  padding: 24px 20px 20px;
-  border-radius: 26px;
+  min-height: 170px;
+  padding: 16px 16px 14px;
+  border-radius: 20px;
   position: relative;
   overflow: hidden;
   color: white;
   background: linear-gradient(145deg, #0e274a 0%, #1a4975 60%, #b88f57 150%);
-  box-shadow: 0 14px 34px rgba(16, 43, 80, 0.22);
+  box-shadow: 0 10px 24px rgba(16, 43, 80, 0.2);
 }
 
 .hero::before {
   content: "";
   position: absolute;
-  width: 280px;
-  height: 280px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  right: -90px;
-  top: -80px;
-  box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.03), 0 0 0 45px rgba(255, 255, 255, 0.02);
+  right: -80px;
+  top: -70px;
+  box-shadow: 0 0 0 18px rgba(255, 255, 255, 0.03), 0 0 0 36px rgba(255, 255, 255, 0.02);
   pointer-events: none;
 }
 
@@ -238,10 +242,10 @@ button {
   content: "۞";
   position: absolute;
   font-family: Georgia, serif;
-  font-size: 200px;
+  font-size: 160px;
   line-height: 1;
-  right: -15px;
-  bottom: -65px;
+  right: -10px;
+  bottom: -50px;
   color: rgba(255, 255, 255, 0.06);
   transform: rotate(15deg);
   pointer-events: none;
@@ -250,9 +254,9 @@ button {
 .hero-kicker {
   position: relative;
   z-index: 1;
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   color: #bcd8fb;
   font-weight: 700;
 }
@@ -261,12 +265,12 @@ button {
   position: relative;
   z-index: 1;
   font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", "Geeza Pro", serif;
-  font-size: 48px;
-  line-height: 1.45;
+  font-size: 38px;
+  line-height: 1.25;
   text-align: center;
-  margin: 6px 0 0;
+  margin: 2px 0 0;
   color: #fff;
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
 
 .hero h1 {
@@ -274,18 +278,18 @@ button {
   z-index: 1;
   margin: 0;
   text-align: center;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.4px;
 }
 
 .hero-sub {
   position: relative;
   z-index: 1;
   text-align: center;
-  font-size: 13px;
+  font-size: 11.5px;
   color: #e2eeff;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .hero-bottom {
@@ -294,14 +298,14 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 22px;
-  font-size: 11px;
+  margin-top: 12px;
+  font-size: 10.5px;
   color: #d1e4fc;
 }
 
 .hero-pill {
   border: 1px solid rgba(255, 255, 255, 0.35);
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 99px;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(10px);
@@ -313,16 +317,16 @@ button {
    SEARCH BAR
    ========================================================================== */
 .search-wrap {
-  height: 50px;
+  height: 42px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 0 16px;
+  gap: 10px;
+  padding: 0 14px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: var(--shadow-sm);
-  margin-top: 16px;
+  margin-top: 10px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -343,7 +347,7 @@ button {
   min-width: 0;
   background: transparent;
   color: var(--ink);
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .search-wrap input::placeholder {
@@ -352,12 +356,12 @@ button {
 
 .clear-search-btn {
   display: none;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--border);
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1;
   place-items: center;
 }
@@ -371,12 +375,12 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 22px 2px 12px;
+  margin: 14px 2px 8px;
 }
 
 .section-head h2 {
   margin: 0;
-  font-size: 16px;
+  font-size: 14.5px;
   font-weight: 700;
   letter-spacing: -0.3px;
   color: var(--navy);
@@ -388,10 +392,10 @@ button {
 
 .text-link {
   color: var(--blue);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   text-decoration: none;
-  padding: 6px 2px;
+  padding: 4px 2px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -402,21 +406,21 @@ button {
 .tile-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 8px;
 }
 
 .action-tile {
-  min-height: 108px;
+  min-height: 76px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 16px;
   box-shadow: var(--shadow-sm);
-  padding: 15px 12px 12px;
+  padding: 10px 8px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 4px;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   text-align: center;
@@ -433,11 +437,11 @@ button {
 }
 
 .tile-icon {
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   display: grid;
   place-items: center;
-  border-radius: 12px;
+  border-radius: 10px;
   color: var(--blue);
   background: var(--blue-soft);
 }
@@ -463,25 +467,25 @@ button {
 }
 
 .action-tile strong {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .action-tile span:last-child {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 10px;
 }
 
 /* Verse Card */
 .verse-card {
-  margin-top: 18px;
+  margin-top: 10px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 16px;
   box-shadow: var(--shadow-sm);
-  padding: 16px;
+  padding: 10px 12px;
   display: flex;
-  gap: 14px;
+  gap: 10px;
   align-items: flex-start;
 }
 
@@ -492,9 +496,9 @@ button {
 }
 
 .verse-card h3 {
-  margin: 0 0 6px;
+  margin: 0 0 4px;
   color: var(--navy);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -505,15 +509,15 @@ button {
 .verse-card p {
   margin: 0;
   color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.45;
 }
 
 .verse-ref {
   display: block;
-  margin-top: 6px;
+  margin-top: 4px;
   color: var(--muted-light);
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 600;
 }
 
@@ -743,19 +747,19 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px 6px 12px;
+  padding: 0 4px 6px;
 }
 
 .back-button {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   align-items: center;
   border: 0;
   background: transparent;
   color: var(--blue);
   font-weight: 700;
   font-size: 13px;
-  padding: 8px 4px;
+  padding: 4px 2px;
   cursor: pointer;
   border-radius: 8px;
 }
@@ -767,12 +771,12 @@ button {
 .detail-top-right {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .detail-card {
   border: 1px solid var(--border);
-  border-radius: 28px;
+  border-radius: 20px;
   overflow: hidden;
   background: linear-gradient(180deg, var(--blue-soft) 0%, var(--surface) 35%);
   box-shadow: var(--shadow-md);
@@ -784,7 +788,7 @@ button {
 }
 
 .detail-ornament {
-  padding: 24px 18px 20px;
+  padding: 10px 12px 8px;
   position: relative;
   text-align: center;
 }
@@ -792,33 +796,33 @@ button {
 .detail-ornament::before, .detail-ornament::after {
   content: "";
   position: absolute;
-  top: 32px;
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(75, 137, 207, 0.2);
+  top: 18px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(75, 137, 207, 0.15);
   transform: rotate(45deg);
   pointer-events: none;
 }
 
 .detail-ornament::before {
-  left: -24px;
+  left: -16px;
 }
 
 .detail-ornament::after {
-  right: -24px;
+  right: -16px;
 }
 
 .detail-number {
-  margin: 0 auto 12px;
-  width: 36px;
-  height: 36px;
+  margin: 0 auto 4px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   color: var(--blue);
   background: #dbeafe;
   font-weight: 800;
-  font-size: 13px;
+  font-size: 11px;
 }
 
 [data-theme="dark"] .detail-number {
@@ -829,43 +833,52 @@ button {
 .detail-arabic {
   font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", "Geeza Pro", serif;
   color: var(--navy-deep);
-  font-size: clamp(44px, 13vw, 64px);
-  line-height: 1.5;
+  font-size: clamp(30px, 8.5vw, 40px);
+  line-height: 1.25;
   margin: 0;
   direction: rtl;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] .detail-arabic {
   color: #ffffff;
-  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.1);
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.1);
 }
 
 .detail-latin {
   color: var(--blue);
   font-family: Georgia, -apple-system, serif;
-  font-size: 26px;
-  font-weight: 600;
-  margin: 6px 0 10px;
-  letter-spacing: -0.4px;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 2px 0 6px;
+  letter-spacing: -0.3px;
 }
 
 .ornament-line {
   height: 1px;
-  width: 50%;
+  width: 40%;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  margin: 0 auto 14px;
+  margin: 0 auto 6px;
+}
+
+.detail-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .meaning-pill {
   display: inline-block;
-  padding: 8px 20px;
+  padding: 4px 12px;
   border-radius: 99px;
   background: var(--gold-soft);
   color: var(--navy);
-  font-size: 13px;
-  font-weight: 750;
+  font-size: 11.5px;
+  font-weight: 700;
   border: 1px solid rgba(198, 166, 107, 0.25);
+  line-height: 1.35;
 }
 
 [data-theme="dark"] .meaning-pill {
@@ -875,23 +888,22 @@ button {
 
 /* Audio & Pronunciation Chime Bar */
 .pronounce-bar {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-top: 14px;
 }
 
 .pronounce-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
+  gap: 5px;
+  padding: 4px 10px;
+  height: 25px;
   border-radius: 99px;
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--navy);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   box-shadow: var(--shadow-sm);
   transition: all 0.15s ease;
@@ -907,21 +919,21 @@ button {
 }
 
 .detail-content {
-  padding: 4px 18px 18px;
+  padding: 4px 12px 8px;
 }
 
 .detail-section {
-  padding: 14px 0;
+  padding: 5px 0;
   border-top: 1px solid var(--border);
 }
 
 .detail-section h3 {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   color: var(--navy);
-  margin: 0 0 8px;
-  font-size: 13px;
+  margin: 0 0 3px;
+  font-size: 11.5px;
   font-weight: 750;
 }
 
@@ -931,30 +943,32 @@ button {
 
 .detail-section h3 svg {
   color: var(--blue);
+  width: 14px;
+  height: 14px;
 }
 
 .detail-section p {
   color: var(--ink);
-  font-size: 13px;
-  line-height: 1.75;
+  font-size: 11.5px;
+  line-height: 1.45;
   margin: 0;
 }
 
 .reference-box {
   background: var(--gold-soft);
   border: 1px solid rgba(198, 166, 107, 0.2);
-  border-radius: 16px;
-  padding: 12px 14px;
+  border-radius: 12px;
+  padding: 5px 10px;
   color: var(--ink);
-  font-size: 12px;
-  line-height: 1.65;
+  font-size: 11px;
+  line-height: 1.4;
 }
 
 .reference-box strong {
   display: block;
   color: var(--navy);
-  margin-top: 5px;
-  font-size: 11px;
+  margin-top: 2px;
+  font-size: 10.5px;
 }
 
 [data-theme="dark"] .reference-box strong {
@@ -967,9 +981,9 @@ button {
 .tasbih-widget {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 14px;
-  margin-top: 14px;
+  border-radius: 14px;
+  padding: 5px 10px 6px;
+  margin-top: 5px;
   box-shadow: var(--shadow-sm);
 }
 
@@ -977,26 +991,31 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
 }
 
 .tasbih-title {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 750;
   color: var(--navy);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 [data-theme="dark"] .tasbih-title {
   color: #e2e8f0;
 }
 
+.tasbih-title svg {
+  width: 13px;
+  height: 13px;
+}
+
 .tasbih-target-select {
-  font-size: 11px;
-  padding: 4px 8px;
-  border-radius: 8px;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 6px;
   border: 1px solid var(--border);
   background: var(--page);
   color: var(--ink);
@@ -1007,22 +1026,22 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
 }
 
 .tasbih-tap-button {
   flex: 1;
-  height: 52px;
-  border-radius: 16px;
+  height: 38px;
+  border-radius: 12px;
   background: linear-gradient(135deg, var(--blue), var(--navy));
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 750;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -1034,19 +1053,19 @@ button {
 }
 
 .tasbih-count-badge {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 800;
   background: rgba(255, 255, 255, 0.2);
-  padding: 2px 12px;
+  padding: 1px 8px;
   border-radius: 99px;
-  min-width: 44px;
+  min-width: 34px;
   text-align: center;
 }
 
 .tasbih-reset-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
   border: 1px solid var(--border);
   background: var(--page);
   color: var(--muted);
@@ -1126,21 +1145,21 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 6px 8px;
-  margin-top: 6px;
+  padding: 3px 4px 0;
+  margin-top: 2px;
 }
 
 .pagination-btn {
   background: transparent;
   border: 0;
   color: var(--blue);
-  font-size: 13px;
+  font-size: 11.5px;
   font-weight: 750;
-  padding: 8px 4px;
+  padding: 4px 2px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .pagination-btn:disabled {
@@ -1150,7 +1169,7 @@ button {
 }
 
 .swipe-hint {
-  font-size: 10px;
+  font-size: 9px;
   color: var(--muted-light);
   text-align: center;
 }
@@ -1237,7 +1256,7 @@ button {
   left: 50%;
   transform: translateX(-50%);
   width: min(100%, 500px);
-  padding: 8px 10px calc(8px + var(--safe-bottom));
+  padding: 4px 8px calc(4px + var(--safe-bottom));
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
@@ -1260,11 +1279,11 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  min-height: 48px;
+  gap: 2px;
+  min-height: 42px;
   cursor: pointer;
   transition: transform 0.12s ease, color 0.15s ease;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .nav-btn:active {
