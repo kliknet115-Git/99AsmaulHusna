@@ -688,12 +688,12 @@ button {
 
 .card-meaning {
   color: var(--muted);
-  font-size: 11px;
-  line-height: 1.35;
-  margin-top: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 11.5px;
+  line-height: 1.45;
+  margin-top: 3px;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .card-arrow {
