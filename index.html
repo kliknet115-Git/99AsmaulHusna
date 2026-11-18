@@ -420,22 +420,7 @@
       </button>
     </nav>
 
-    <!-- iOS "Add to Home Screen" Bottom Tip Banner -->
-    <div id="iosBanner" class="ios-banner" role="alert">
-      <div class="ios-banner-content">
-        <img class="ios-banner-icon" src="./icons/apple-touch-icon.png" alt="App Icon" />
-        <div class="ios-banner-text">
-          <strong>Pasang di Layar iPhone</strong>
-          <span>Akses cepat & layar penuh tanpa browser bar</span>
-        </div>
-      </div>
-      <div class="ios-banner-actions">
-        <button class="ios-btn-open" onclick="showIOSInstallPrompt()">Lihat Cara</button>
-        <button class="ios-btn-close" onclick="closeIOSInstallPrompt(true)" aria-label="Tutup">✕</button>
-      </div>
-    </div>
-
-    <!-- iOS Safari Installation Modal Sheet -->
+    <!-- iOS Safari Installation Modal Sheet (Hanya muncul saat tombol info/install ditekan) -->
     <div id="iosInstallModal" class="ios-modal-backdrop" onclick="if(event.target===this) closeIOSInstallPrompt()">
       <div class="ios-modal-sheet">
         <div class="modal-drag-handle"></div>

@@ -42,38 +42,23 @@
     }
   };
 
-  // Auto show banner on iOS if not installed & not dismissed recently
-  window.addEventListener('DOMContentLoaded', () => {
-    const dismissed = localStorage.getItem('pwa-ios-prompt-dismissed');
-    const installBanner = document.getElementById('iosBanner');
-
-    if (isIOS && !isStandalone) {
-      if (installBanner && !dismissed) {
-        // Show subtle bottom tip after 3 seconds
-        setTimeout(() => {
-          installBanner.classList.add('show');
-        }, 2500);
-      }
+  // Capture standard PWA install prompt (Chrome / Android)
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const btnInstall = document.getElementById('btnInstallApp');
+    if (btnInstall) {
+      btnInstall.style.display = 'inline-flex';
+      btnInstall.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log('[PWA] User response:', outcome);
+          deferredPrompt = null;
+          btnInstall.style.display = 'none';
+        }
+      });
     }
-
-    // Capture standard PWA install prompt (Chrome / Android)
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      const btnInstall = document.getElementById('btnInstallApp');
-      if (btnInstall) {
-        btnInstall.style.display = 'inline-flex';
-        btnInstall.addEventListener('click', async () => {
-          if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log('[PWA] User response:', outcome);
-            deferredPrompt = null;
-            btnInstall.style.display = 'none';
-          }
-        });
-      }
-    });
   });
 })();
