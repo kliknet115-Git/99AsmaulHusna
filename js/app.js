@@ -113,6 +113,7 @@ function showScreen(screenId) {
   if (screenId === 'detail') return;
 
   AppState.currentScreen = screenId;
+  document.body.classList.remove('detail-open');
 
   // Update screens visibility
   document.querySelectorAll('.screen').forEach((el) => {
@@ -151,6 +152,7 @@ function openDetail(id, from = AppState.currentScreen) {
 
   // Update screens
   AppState.currentScreen = 'detail';
+  document.body.classList.add('detail-open');
   document.querySelectorAll('.screen').forEach((el) => {
     el.classList.toggle('active', el.id === 'detail');
   });
@@ -194,6 +196,7 @@ function openDetail(id, from = AppState.currentScreen) {
 
 // Go Back from Detail Screen
 function goBack() {
+  document.body.classList.remove('detail-open');
   if (AppState.previousScreen === 'favorites') {
     showScreen('favorites');
   } else if (AppState.previousScreen === 'home') {

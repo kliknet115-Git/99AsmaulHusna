@@ -202,13 +202,41 @@ button {
 }
 
 #detail.screen {
-  padding: 4px 10px 8px;
+  padding: 4px 14px 0;
+  box-sizing: border-box;
+}
+
+#detail.screen.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 104px - var(--safe-top) - var(--safe-bottom));
+  height: calc(100dvh - 104px - var(--safe-top) - var(--safe-bottom));
+  max-height: calc(100vh - 104px - var(--safe-top) - var(--safe-bottom));
+  max-height: calc(100dvh - 104px - var(--safe-top) - var(--safe-bottom));
+  overflow: hidden;
+}
+
+body.detail-open {
+  overflow: hidden !important;
+  touch-action: pan-x !important;
+}
+
+body.detail-open .app-shell {
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
 }
 
 .screen.active {
   display: block;
   opacity: 1;
   transform: translateY(0);
+}
+
+#detail.screen.active {
+  display: flex;
 }
 
 /* ==========================================================================
@@ -743,11 +771,15 @@ button {
 /* ==========================================================================
    DETAIL VIEW
    ========================================================================== */
+/* ==========================================================================
+   DETAIL VIEW (Full-Screen Responsive Layout)
+   ========================================================================== */
 .detail-top {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4px 6px;
+  padding: 0 2px 4px;
 }
 
 .back-button {
@@ -758,7 +790,7 @@ button {
   background: transparent;
   color: var(--blue);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 13.5px;
   padding: 4px 2px;
   cursor: pointer;
   border-radius: 8px;
@@ -775,8 +807,13 @@ button {
 }
 
 .detail-card {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
   background: linear-gradient(180deg, var(--blue-soft) 0%, var(--surface) 35%);
   box-shadow: var(--shadow-md);
@@ -788,7 +825,8 @@ button {
 }
 
 .detail-ornament {
-  padding: 10px 12px 8px;
+  flex: 0 0 auto;
+  padding: clamp(10px, 2vh, 16px) 16px clamp(8px, 1.5vh, 12px);
   position: relative;
   text-align: center;
 }
@@ -796,33 +834,33 @@ button {
 .detail-ornament::before, .detail-ornament::after {
   content: "";
   position: absolute;
-  top: 18px;
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgba(75, 137, 207, 0.15);
+  top: 22px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(75, 137, 207, 0.16);
   transform: rotate(45deg);
   pointer-events: none;
 }
 
 .detail-ornament::before {
-  left: -16px;
+  left: -19px;
 }
 
 .detail-ornament::after {
-  right: -16px;
+  right: -19px;
 }
 
 .detail-number {
   margin: 0 auto 4px;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   color: var(--blue);
   background: #dbeafe;
   font-weight: 800;
-  font-size: 11px;
+  font-size: 11.5px;
 }
 
 [data-theme="dark"] .detail-number {
@@ -833,30 +871,30 @@ button {
 .detail-arabic {
   font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", "Geeza Pro", serif;
   color: var(--navy-deep);
-  font-size: clamp(30px, 8.5vw, 40px);
-  line-height: 1.25;
+  font-size: clamp(38px, 10vw, 54px);
+  line-height: 1.28;
   margin: 0;
   direction: rtl;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] .detail-arabic {
   color: #ffffff;
-  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.1);
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.1);
 }
 
 .detail-latin {
   color: var(--blue);
   font-family: Georgia, -apple-system, serif;
-  font-size: 19px;
+  font-size: clamp(20px, 5.2vw, 24px);
   font-weight: 700;
-  margin: 2px 0 6px;
+  margin: 3px 0 6px;
   letter-spacing: -0.3px;
 }
 
 .ornament-line {
   height: 1px;
-  width: 40%;
+  width: 45%;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
   margin: 0 auto 6px;
 }
@@ -865,18 +903,19 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
+  margin-top: 2px;
 }
 
 .meaning-pill {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 5px 15px;
   border-radius: 99px;
   background: var(--gold-soft);
   color: var(--navy);
-  font-size: 11.5px;
-  font-weight: 700;
+  font-size: 12.5px;
+  font-weight: 750;
   border: 1px solid rgba(198, 166, 107, 0.25);
   line-height: 1.35;
 }
@@ -896,14 +935,14 @@ button {
 .pronounce-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 10px;
-  height: 25px;
+  gap: 6px;
+  padding: 5px 13px;
+  height: 29px;
   border-radius: 99px;
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--navy);
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
   box-shadow: var(--shadow-sm);
   transition: all 0.15s ease;
@@ -919,21 +958,26 @@ button {
 }
 
 .detail-content {
-  padding: 4px 12px 8px;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 4px 16px 12px;
 }
 
 .detail-section {
-  padding: 5px 0;
+  padding: clamp(6px, 1.2vh, 10px) 0;
   border-top: 1px solid var(--border);
 }
 
 .detail-section h3 {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   color: var(--navy);
-  margin: 0 0 3px;
-  font-size: 11.5px;
+  margin: 0 0 4px;
+  font-size: 12.5px;
   font-weight: 750;
 }
 
@@ -943,32 +987,32 @@ button {
 
 .detail-section h3 svg {
   color: var(--blue);
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
 }
 
 .detail-section p {
   color: var(--ink);
-  font-size: 11.5px;
-  line-height: 1.45;
+  font-size: clamp(12px, 3.2vw, 13px);
+  line-height: 1.55;
   margin: 0;
 }
 
 .reference-box {
   background: var(--gold-soft);
   border: 1px solid rgba(198, 166, 107, 0.2);
-  border-radius: 12px;
-  padding: 5px 10px;
+  border-radius: 14px;
+  padding: clamp(6px, 1.2vh, 10px) 12px;
   color: var(--ink);
-  font-size: 11px;
-  line-height: 1.4;
+  font-size: clamp(11.5px, 3vw, 12px);
+  line-height: 1.5;
 }
 
 .reference-box strong {
   display: block;
   color: var(--navy);
-  margin-top: 2px;
-  font-size: 10.5px;
+  margin-top: 3px;
+  font-size: 11px;
 }
 
 [data-theme="dark"] .reference-box strong {
@@ -981,9 +1025,9 @@ button {
 .tasbih-widget {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 5px 10px 6px;
-  margin-top: 5px;
+  border-radius: 16px;
+  padding: clamp(8px, 1.3vh, 12px) 12px;
+  margin-top: 4px;
   box-shadow: var(--shadow-sm);
 }
 
@@ -991,16 +1035,16 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: clamp(6px, 1vh, 8px);
 }
 
 .tasbih-title {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 750;
   color: var(--navy);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 
 [data-theme="dark"] .tasbih-title {
@@ -1008,14 +1052,14 @@ button {
 }
 
 .tasbih-title svg {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
 }
 
 .tasbih-target-select {
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 6px;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--page);
   color: var(--ink);
@@ -1026,22 +1070,22 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
 }
 
 .tasbih-tap-button {
   flex: 1;
-  height: 38px;
-  border-radius: 12px;
+  height: clamp(40px, 5.5vh, 46px);
+  border-radius: 14px;
   background: linear-gradient(135deg, var(--blue), var(--navy));
   color: white;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 750;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  gap: 10px;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.22);
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -1053,19 +1097,19 @@ button {
 }
 
 .tasbih-count-badge {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
   background: rgba(255, 255, 255, 0.2);
-  padding: 1px 8px;
+  padding: 2px 10px;
   border-radius: 99px;
-  min-width: 34px;
+  min-width: 38px;
   text-align: center;
 }
 
 .tasbih-reset-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
+  width: clamp(40px, 5.5vh, 46px);
+  height: clamp(40px, 5.5vh, 46px);
+  border-radius: 14px;
   border: 1px solid var(--border);
   background: var(--page);
   color: var(--muted);
@@ -1078,74 +1122,13 @@ button {
   transform: scale(0.92);
 }
 
-/* Detail Action Buttons */
-.detail-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin: 16px 2px 0;
-}
-
-.primary-action {
-  border: 0;
-  border-radius: 16px;
-  background: var(--blue);
-  color: white;
-  font-weight: 750;
-  font-size: 13px;
-  padding: 14px 16px;
-  flex: 1;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: transform 0.12s ease;
-}
-
-.primary-action:active {
-  transform: scale(0.97);
-}
-
-.secondary-action {
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--surface);
-  color: var(--navy);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: transform 0.12s ease;
-}
-
-[data-theme="dark"] .secondary-action {
-  color: #cbd5e1;
-}
-
-.secondary-action:active {
-  transform: scale(0.93);
-}
-
-.secondary-action.is-favorite {
-  color: #e11d48;
-  background: #ffe4e6;
-  border-color: #fecdd3;
-}
-
-[data-theme="dark"] .secondary-action.is-favorite {
-  background: rgba(225, 29, 72, 0.18);
-  border-color: rgba(225, 29, 72, 0.3);
-}
-
 /* Detail Pagination with Swipe Hint */
 .detail-pagination {
+  flex: 0 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3px 4px 0;
+  padding: clamp(4px, 1vh, 8px) 4px 2px;
   margin-top: 2px;
 }
 
@@ -1153,13 +1136,13 @@ button {
   background: transparent;
   border: 0;
   color: var(--blue);
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 750;
-  padding: 4px 2px;
+  padding: 6px 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .pagination-btn:disabled {
@@ -1169,7 +1152,7 @@ button {
 }
 
 .swipe-hint {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--muted-light);
   text-align: center;
 }
