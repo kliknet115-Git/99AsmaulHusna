@@ -1,0 +1,39 @@
+{
+  "name": "Asmaul Husna — 99 Nama Allah",
+  "short_name": "Asmaul Husna",
+  "description": "Aplikasi PWA Mobile-first untuk membaca, merenungkan, dan menghafal 99 Asmaul Husna lengkap dengan teks Arab, transliterasi Latin, makna, dan dalil Al-Qur'an.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#102947",
+  "theme_color": "#102947",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["education", "books", "lifestyle"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

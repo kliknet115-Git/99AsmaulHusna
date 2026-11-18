@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+generate_data.py
+generate_icons.py

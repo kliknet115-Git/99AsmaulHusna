@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" id="metaThemeColor" content="#17365d" />
+
+  <!-- iOS Safari Specific PWA Settings -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Asmaul Husna" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+  <link rel="mask-icon" href="./icons/icon.svg" color="#17365d" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- Standard PWA Web App Manifest -->
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="64x64" href="./icons/favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
+
+  <!-- SEO & Social Meta -->
+  <title>Asmaul Husna — 99 Nama-nama Allah</title>
+  <meta name="description" content="Aplikasi Mobile-first PWA 99 Asmaul Husna dioptimalkan untuk iPhone Safari. Dilengkapi teks Arab bertasydid, transliterasi Latin, arti, makna, dalil, audio, tasbih digital, dan kuis hafalan." />
+
+  <!-- Arabic Typography from Google Fonts (with offline serif fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+      <div class="brand-mini" onclick="showScreen('home')" style="cursor:pointer;">
+        <span class="brand-mark">ﷲ</span>
+        <span>Asmaul Husna</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Ganti tema" onclick="toggleTheme()">
+          <span id="themeToggleIcon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </span>
+        </button>
+        <button class="icon-btn" aria-label="Panduan Pasang iPhone" onclick="showIOSInstallPrompt()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- 1. SCREEN: HOME (BERANDA) -->
+    <section id="home" class="screen active">
+      <div class="hero">
+        <div class="hero-kicker">Mengenal Nama-Nama Agung</div>
+        <div class="hero-arabic" lang="ar" dir="rtl">اللّٰهُ</div>
+        <h1>Asmaul Husna</h1>
+        <div class="hero-sub">99 Nama Terbaik Milik Allah Ta'ala</div>
+        <div class="hero-bottom">
+          <span>Kenali · Pahami · Amalkan</span>
+          <span class="hero-pill">99 Nama Lengkap</span>
+        </div>
+      </div>
+
+      <div class="search-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/><path d="m20 20-4-4" stroke-linecap="round"/>
+        </svg>
+        <input id="homeSearch" type="search" placeholder="Cari nama, Arab, nomor, atau arti..." autocomplete="off" />
+        <button class="clear-search-btn" id="clearHomeSearch" onclick="clearSearch('homeSearch','clearHomeSearch')">✕</button>
+      </div>
+
+      <div class="section-head">
+        <h2>Menu Utama</h2>
+        <button class="text-link" onclick="showScreen('list')">Lihat Semua →</button>
+      </div>
+
+      <div class="tile-grid">
+        <button class="action-tile" onclick="showScreen('list')">
+          <span class="tile-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
+            </svg>
+          </span>
+          <strong>99 Asmaul Husna</strong>
+          <span>Baca lengkap 1–99</span>
+        </button>
+
+        <button class="action-tile" onclick="showScreen('favorites')">
+          <span class="tile-icon rose">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+            </svg>
+          </span>
+          <strong>Koleksi Favorit</strong>
+          <span id="homeFavCount">0 tersimpan</span>
+        </button>
+
+        <button class="action-tile" onclick="openLastRead()">
+          <span class="tile-icon emerald">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 7v5l3 2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <strong>Terakhir Dibaca</strong>
+          <span id="lastReadText">Lanjutkan membaca</span>
+        </button>
+
+        <button class="action-tile" onclick="showScreen('quiz')">
+          <span class="tile-icon gold">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </span>
+          <strong>Kuis Hafalan</strong>
+          <span>Uji ingatan Anda</span>
+        </button>
+      </div>
+
+      <div class="verse-card">
+        <svg class="verse-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H12v17H5.5A2.5 2.5 0 0 0 3 22V5.5Zm18 0A2.5 2.5 0 0 0 18.5 3H12v17h6.5A2.5 2.5 0 0 1 21 22V5.5Z"/>
+        </svg>
+        <div>
+          <h3>Keutamaan Mengingat Asmaul Husna</h3>
+          <p>“Dan Allah memiliki Asmaul Husna (nama-nama yang terbaik), maka bermohonlah kepada-Nya dengan menyebutnya...”</p>
+          <span class="verse-ref">QS. Al-A'raf: 180</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SCREEN: LIST (DAFTAR 99 ASMAUL HUSNA) -->
+    <section id="list" class="screen">
+      <div class="page-heading">
+        <div class="eyebrow">Daftar Lengkap</div>
+        <h1>99 Asmaul Husna</h1>
+        <p>Ketuk nama untuk melihat tulisan Arab, makna, dalil, dan dzikir.</p>
+      </div>
+
+      <div class="search-wrap" style="margin-top:10px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/><path d="m20 20-4-4" stroke-linecap="round"/>
+        </svg>
+        <input id="listSearch" type="search" placeholder="Cari nama, Arab, arti, atau nomor..." autocomplete="off" />
+        <button class="clear-search-btn" id="clearListSearch" onclick="clearSearch('listSearch','clearListSearch')">✕</button>
+      </div>
+
+      <div class="filters-bar">
+        <button class="filter-chip active" onclick="setRange('all', this)">Semua (99)</button>
+        <button class="filter-chip" onclick="setRange('1', this)">1–33</button>
+        <button class="filter-chip" onclick="setRange('2', this)">34–66</button>
+        <button class="filter-chip" onclick="setRange('3', this)">67–99</button>
+      </div>
+
+      <div class="list-meta">
+        <span id="listMeta">99 nama ditampilkan</span>
+        <span>Ketuk untuk membuka</span>
+      </div>
+
+      <div id="nameList" class="name-list"></div>
+    </section>
+
+    <!-- 3. SCREEN: DETAIL (DETAIL SATU PER SATU DENGAN GESER / SWIPE) -->
+    <section id="detail" class="screen">
+      <div class="detail-top">
+        <button class="back-button" onclick="goBack()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="detailBackLabel">Daftar</span>
+        </button>
+        <div class="detail-top-right">
+          <button id="detailFavoriteTop" class="icon-btn" aria-label="Tambah favorit" onclick="toggleFavorite()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-ornament">
+          <div class="detail-number" id="detailNumber">1</div>
+          <p class="detail-arabic" id="detailArabic" lang="ar" dir="rtl">الرَّحْمَٰنُ</p>
+          <div class="detail-latin" id="detailLatin">Ar-Rahmān</div>
+          <div class="ornament-line"></div>
+          <div class="meaning-pill" id="detailMeaning">Yang Maha Pengasih</div>
+
+          <!-- Pronunciation Button -->
+          <div class="pronounce-bar">
+            <button class="pronounce-btn" onclick="playPronunciation()">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+              </svg>
+              <span>Dengarkan Pelafalan</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="detail-content">
+          <div class="detail-section">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
+              </svg>
+              Makna & Penjelasan
+            </h3>
+            <p id="detailDescription">Penjelasan makna Asmaul Husna.</p>
+          </div>
+
+          <div class="detail-section">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 2 4 5v6c0 5 3.4 8.8 8 11 4.6-2.2 8-6 8-11V5l-8-3Z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              Dalil Al-Qur'an / Referensi
+            </h3>
+            <div id="detailReference" class="reference-box"></div>
+          </div>
+
+          <!-- Built-in Mini Dzikir / Tasbih Counter for this specific name -->
+          <div class="tasbih-widget">
+            <div class="tasbih-head">
+              <span class="tasbih-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+                Tasbih Dzikir Nama Ini
+              </span>
+              <select class="tasbih-target-select" onchange="changeTasbihTarget(this.value)">
+                <option value="33">Target 33x</option>
+                <option value="99">Target 99x</option>
+                <option value="100">Target 100x</option>
+                <option value="1000">Target Bebas</option>
+              </select>
+            </div>
+            <div class="tasbih-counter-area">
+              <button class="tasbih-tap-button" onclick="incrementTasbih()">
+                <span>Sentuh Untuk Berdzikir</span>
+                <span class="tasbih-count-badge" id="tasbihCount">0</span>
+              </button>
+              <button class="tasbih-reset-btn" onclick="resetTasbih()" aria-label="Reset hitungan">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                  <path d="M21 3v5h-5"/>
+                  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                  <path d="M3 21v-5h5"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-actions">
+        <button class="primary-action" onclick="shareCurrent()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          Bagikan Nama Ini
+        </button>
+        <button id="detailFavoriteButton" class="secondary-action" aria-label="Favoritkan" onclick="toggleFavorite()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="detail-pagination">
+        <button id="prevName" class="pagination-btn" onclick="moveDetail(-1)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Sebelumnya
+        </button>
+        <span class="swipe-hint">👈 Geser jari untuk berpindah 👉</span>
+        <button id="nextName" class="pagination-btn" onclick="moveDetail(1)">
+          Berikutnya
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m9 18 6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- 4. SCREEN: FAVORITES (KOLEKSI PRIBADI) -->
+    <section id="favorites" class="screen">
+      <div class="page-heading">
+        <div class="eyebrow">Koleksi Pribadi</div>
+        <h1>Nama Favorit</h1>
+        <p>Nama-nama Asmaul Husna yang Anda simpan untuk dibaca dan diamalkan kembali.</p>
+      </div>
+      <div id="favoriteList" class="name-list"></div>
+    </section>
+
+    <!-- 5. SCREEN: QUIZ / HAFALAN MODE -->
+    <section id="quiz" class="screen">
+      <div class="page-heading">
+        <div class="eyebrow">Asah Ingatan</div>
+        <h1>Kuis Hafalan</h1>
+        <p>Pilih arti yang tepat untuk nama Allah yang ditampilkan di bawah ini.</p>
+      </div>
+
+      <div class="quiz-card">
+        <div class="quiz-score-badge" id="quizScoreBadge">Skor: 0 / 0</div>
+        <div class="quiz-arabic" id="quizArabic" lang="ar" dir="rtl">الرَّحْمَٰنُ</div>
+        <div class="quiz-latin-hint" id="quizLatinHint">1. Ar-Rahman</div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <button id="quizNextBtn" class="quiz-next-btn" onclick="nextQuizQuestion()">
+          Lanjut ke Soal Berikutnya →
+        </button>
+      </div>
+    </section>
+
+    <!-- 6. SCREEN: ABOUT (TENTANG & PANDUAN IPHONE) -->
+    <section id="about" class="screen">
+      <div class="page-heading">
+        <div class="eyebrow">Tentang Aplikasi</div>
+        <h1>Asmaul Husna PWA</h1>
+        <p>Aplikasi Progressive Web App Mobile-first yang dioptimalkan untuk iPhone Safari.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="hero-arabic" style="color:var(--navy);font-size:38px;margin:0 0 4px;">أَسْمَاءُ اللَّهِ الْحُسْنَى</div>
+        <h2>Mengenal Asmaul Husna</h2>
+        <p>Asmaul Husna adalah 99 nama-nama terbaik dan teragung milik Allah SWT yang mencerminkan keindahan, kesempurnaan, serta kemuliaan sifat-sifat-Nya.</p>
+
+        <h2>Fitur Utama Aplikasi:</h2>
+        <ul>
+          <li><strong>99 Nama Lengkap:</strong> Disertai tulisan Arab berharakat, transliterasi Latin, arti, makna mendalam, dan referensi ayat Al-Qur'an.</li>
+          <li><strong>Optimasi iPhone Safari:</strong> Mengikuti panduan Apple Human Interface Guidelines, dukungan Safe Area notch/island, serta haptic feedback.</li>
+          <li><strong>Offline 100%:</strong> Dilengkapi Service Worker sehingga dapat diakses tanpa koneksi internet setelah dibuka pertama kali.</li>
+          <li><strong>Tasbih Dzikir:</strong> Penghitung digital untuk setiap nama dengan target 33x, 99x, atau tak terbatas.</li>
+          <li><strong>Kuis Hafalan:</strong> Sarana interaktif untuk memudahkan hafalan 99 Asmaul Husna.</li>
+        </ul>
+
+        <h2>Cara Pasang di iPhone (Safari):</h2>
+        <div class="guide-step-card">
+          <span class="step-num">1</span>
+          <div>Buka link aplikasi di <strong>Safari iOS</strong>.</div>
+        </div>
+        <div class="guide-step-card">
+          <span class="step-num">2</span>
+          <div>Ketuk tombol <strong>Bagikan / Share</strong> (ikon kotak berpanah ke atas <span style="font-size:16px;">⎋ / [↑]</span> di bilah bawah).</div>
+        </div>
+        <div class="guide-step-card">
+          <span class="step-num">3</span>
+          <div>Gulir ke bawah lalu ketuk <strong>"Tambah ke Layar Utama" (Add to Home Screen)</strong>.</div>
+        </div>
+        <div class="guide-step-card">
+          <span class="step-num">4</span>
+          <div>Ketuk <strong>"Tambah" (Add)</strong> di pojok kanan atas. Ikon aplikasi akan muncul di layar iPhone Anda layaknya aplikasi native App Store!</div>
+        </div>
+
+        <button class="primary-action" style="margin-top:16px;width:100%;" onclick="showIOSInstallPrompt()">
+          Buka Petunjuk Visual Pasang iPhone
+        </button>
+
+        <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;">
+          <span class="version-chip">PWA Release · v1.0.0</span>
+          <span style="font-size:11px;color:var(--muted);">Hosting: GitHub Pages</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav" aria-label="Navigasi Utama">
+      <button class="nav-btn active" data-screen="home" onclick="showScreen('home')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z" stroke-linejoin="round"/>
+        </svg>
+        <span>Beranda</span>
+      </button>
+
+      <button class="nav-btn" data-screen="list" onclick="showScreen('list')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M9 6h12M9 12h12M9 18h12" stroke-linecap="round"/>
+          <path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <span>Daftar</span>
+      </button>
+
+      <button class="nav-btn" data-screen="favorites" onclick="showScreen('favorites')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+        </svg>
+        <span>Favorit</span>
+      </button>
+
+      <button class="nav-btn" data-screen="quiz" onclick="showScreen('quiz')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span>Kuis</span>
+      </button>
+
+      <button class="nav-btn" data-screen="about" onclick="showScreen('about')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 11v5m0-8h.01" stroke-linecap="round"/>
+        </svg>
+        <span>Tentang</span>
+      </button>
+    </nav>
+
+    <!-- iOS "Add to Home Screen" Bottom Tip Banner -->
+    <div id="iosBanner" class="ios-banner" role="alert">
+      <div class="ios-banner-content">
+        <img class="ios-banner-icon" src="./icons/apple-touch-icon.png" alt="App Icon" />
+        <div class="ios-banner-text">
+          <strong>Pasang di Layar iPhone</strong>
+          <span>Akses cepat & layar penuh tanpa browser bar</span>
+        </div>
+      </div>
+      <div class="ios-banner-actions">
+        <button class="ios-btn-open" onclick="showIOSInstallPrompt()">Lihat Cara</button>
+        <button class="ios-btn-close" onclick="closeIOSInstallPrompt(true)" aria-label="Tutup">✕</button>
+      </div>
+    </div>
+
+    <!-- iOS Safari Installation Modal Sheet -->
+    <div id="iosInstallModal" class="ios-modal-backdrop" onclick="if(event.target===this) closeIOSInstallPrompt()">
+      <div class="ios-modal-sheet">
+        <div class="modal-drag-handle"></div>
+        <div class="ios-modal-header">
+          <img src="./icons/apple-touch-icon.png" width="60" height="60" style="border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,0.15);" alt="Icon Asmaul Husna" />
+          <h3>Pasang di iPhone Anda</h3>
+          <p>Hanya 3 langkah mudah untuk pengalaman aplikasi layar penuh:</p>
+        </div>
+
+        <div class="ios-steps">
+          <div class="ios-step-item">
+            <div class="ios-step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 12v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/>
+                <polyline points="16 6 12 2 8 6"/>
+                <line x1="12" y1="2" x2="12" y2="15"/>
+              </svg>
+            </div>
+            <div class="ios-step-text">
+              <strong>1. Ketuk Tombol Share Safari</strong>
+              <span>Ikon kotak panah ke atas di bilah menu bawah Safari</span>
+            </div>
+          </div>
+
+          <div class="ios-step-item">
+            <div class="ios-step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="4"/>
+                <line x1="12" y1="8" x2="12" y2="16"/>
+                <line x1="8" y1="12" x2="16" y2="12"/>
+              </svg>
+            </div>
+            <div class="ios-step-text">
+              <strong>2. Pilih "Tambah ke Layar Utama"</strong>
+              <span>Gulir menu ke bawah lalu pilih Add to Home Screen</span>
+            </div>
+          </div>
+
+          <div class="ios-step-item">
+            <div class="ios-step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="ios-step-text">
+              <strong>3. Ketuk "Tambah" (Add)</strong>
+              <span>Pojok kanan atas, selesai! Aplikasi siap digunakan</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="modal-close-btn" onclick="closeIOSInstallPrompt()">Mengerti</button>
+      </div>
+    </div>
+
+    <!-- Toast Notification Element -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="./js/data.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/pwa.js"></script>
+</body>
+</html>
