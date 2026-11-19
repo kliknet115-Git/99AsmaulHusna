@@ -121,6 +121,7 @@ function showScreen(screenId) {
 
   AppState.currentScreen = screenId;
   document.body.classList.remove('detail-open');
+  document.body.classList.toggle('wheel-open', screenId === 'wheel');
 
   // Update screens visibility
   document.querySelectorAll('.screen').forEach((el) => {
@@ -163,6 +164,7 @@ function openDetail(id, from = AppState.currentScreen) {
 
   // Update screens
   AppState.currentScreen = 'detail';
+  document.body.classList.remove('wheel-open');
   document.body.classList.add('detail-open');
   document.querySelectorAll('.screen').forEach((el) => {
     el.classList.toggle('active', el.id === 'detail');

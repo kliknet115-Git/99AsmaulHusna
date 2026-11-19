@@ -212,6 +212,11 @@ button {
   box-sizing: border-box;
 }
 
+#wheel.screen {
+  padding: 4px 10px 0;
+  box-sizing: border-box;
+}
+
 #detail.screen.active {
   display: flex;
   flex-direction: column;
@@ -223,12 +228,26 @@ button {
   overflow: hidden;
 }
 
-body.detail-open {
+#wheel.screen.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100vh - 104px - var(--safe-top) - var(--safe-bottom));
+  height: calc(100dvh - 104px - var(--safe-top) - var(--safe-bottom));
+  max-height: calc(100vh - 104px - var(--safe-top) - var(--safe-bottom));
+  max-height: calc(100dvh - 104px - var(--safe-top) - var(--safe-bottom));
+  overflow: hidden;
+}
+
+body.detail-open,
+body.wheel-open {
   overflow: hidden !important;
   touch-action: pan-x !important;
 }
 
-body.detail-open .app-shell {
+body.detail-open .app-shell,
+body.wheel-open .app-shell {
   height: 100vh;
   height: 100dvh;
   max-height: 100dvh;
@@ -1339,52 +1358,45 @@ body.detail-open .app-shell {
    WHEEL SCREEN - 99 RADIAL READER (RODA 99 SEGMEN)
    ========================================================================== */
 #wheel {
-  padding: 10px 16px calc(80px + var(--safe-bottom));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
   position: relative;
-  overflow-x: hidden;
 }
 
-.wheel-header {
+/* Status Bar Above Wheel (Number Badge & Title & Controls) */
+.wheel-status-bar {
   width: 100%;
-  max-width: 460px;
+  max-width: 440px;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
-  padding: 4px 4px 8px;
-  border-bottom: 1px solid var(--border);
+  padding: 2px 4px 4px;
+  margin-bottom: 2px;
 }
 
-.wheel-header-meta {
-  text-align: left;
+.wheel-status-bar .wheel-num-badge {
+  font-size: 12px;
+  font-weight: 750;
+  color: var(--blue);
+  background: var(--blue-soft);
+  padding: 3px 12px;
+  border-radius: 99px;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
 }
 
-.wheel-kicker {
+.wheel-header-center {
+  display: flex;
+  align-items: center;
+}
+
+.wheel-kicker-mini {
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   color: var(--blue);
-}
-
-.wheel-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--navy);
-  line-height: 1.2;
-  margin: 2px 0 0;
-}
-
-[data-theme="dark"] .wheel-title {
-  color: #ffffff;
-}
-
-.wheel-subtitle {
-  font-size: 12px;
-  color: var(--muted);
 }
 
 .wheel-header-actions {
@@ -1393,11 +1405,57 @@ body.detail-open .app-shell {
   gap: 6px;
 }
 
+.wheel-icon-btn-compact {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s ease;
+}
+
+.wheel-icon-btn-compact:active {
+  transform: scale(0.9);
+}
+
+.wheel-fav-btn-outer {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s ease;
+}
+
+.wheel-fav-btn-outer:active {
+  transform: scale(0.9);
+}
+
+.wheel-fav-btn-outer.active {
+  color: #e11d48;
+  background: rgba(225, 29, 72, 0.08);
+  border-color: rgba(225, 29, 72, 0.2);
+}
+
 /* Wheel Stage & SVG Radial Wheel */
 .wheel-stage-container {
   width: 100%;
   max-width: 440px;
-  margin: 0 auto 14px;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1405,8 +1463,9 @@ body.detail-open .app-shell {
 
 .wheel-stage {
   position: relative;
-  width: min(92vw, 420px);
-  height: min(92vw, 420px);
+  width: min(84vw, calc(46dvh - 24px), 330px);
+  height: min(84vw, calc(46dvh - 24px), 330px);
+  aspect-ratio: 1;
   margin: 0 auto;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(234, 242, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
@@ -1419,7 +1478,7 @@ body.detail-open .app-shell {
   width: 100%;
   height: 100%;
   display: block;
-  filter: drop-shadow(0 8px 24px rgba(23, 54, 93, 0.08));
+  filter: drop-shadow(0 6px 20px rgba(23, 54, 93, 0.08));
   user-select: none;
   -webkit-user-select: none;
 }
@@ -1494,53 +1553,6 @@ body.detail-open .app-shell {
   font-weight: 800 !important;
 }
 
-/* Status Bar Above Wheel (Number Badge & Favorite Button) */
-.wheel-status-bar {
-  width: 100%;
-  max-width: 440px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 4px 6px 6px;
-  margin-bottom: 2px;
-}
-
-.wheel-status-bar .wheel-num-badge {
-  font-size: 13px;
-  font-weight: 750;
-  color: var(--blue);
-  background: var(--blue-soft);
-  padding: 4px 14px;
-  border-radius: 99px;
-  border: 1px solid rgba(37, 99, 235, 0.18);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
-}
-
-.wheel-fav-btn-outer {
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--muted);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.15s ease;
-}
-
-.wheel-fav-btn-outer:active {
-  transform: scale(0.9);
-}
-
-.wheel-fav-btn-outer.active {
-  color: #e11d48;
-  background: rgba(225, 29, 72, 0.08);
-  border-color: rgba(225, 29, 72, 0.2);
-}
-
 /* Central Active Name Panel */
 .wheel-center-card {
   position: absolute;
@@ -1552,12 +1564,12 @@ body.detail-open .app-shell {
   border-radius: 50%;
   background: #ffffff;
   border: 2px solid #e0e9f5;
-  box-shadow: 0 10px 30px rgba(23, 54, 93, 0.12), inset 0 0 15px rgba(234, 242, 255, 0.5);
+  box-shadow: 0 8px 24px rgba(23, 54, 93, 0.12), inset 0 0 15px rgba(234, 242, 255, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px 12px;
+  padding: 8px 10px;
   cursor: pointer;
   text-align: center;
   box-sizing: border-box;
@@ -1568,7 +1580,7 @@ body.detail-open .app-shell {
 [data-theme="dark"] .wheel-center-card {
   background: #111e31;
   border-color: #1e3656;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(17, 30, 49, 0.8);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(17, 30, 49, 0.8);
 }
 
 .wheel-center-card:active {
@@ -1584,12 +1596,12 @@ body.detail-open .app-shell {
 }
 
 .wheel-arabic-wrap {
-  margin: -6px 0 14px;
+  margin: -4px 0 12px;
 }
 
 .wheel-arabic-text {
   font-family: 'Amiri', 'Noto Naskh Arabic', serif;
-  font-size: clamp(34px, 8.8vw, 50px);
+  font-size: clamp(32px, 8.2vw, 48px);
   font-weight: 700;
   color: var(--navy);
   line-height: 1.35;
@@ -1604,20 +1616,20 @@ body.detail-open .app-shell {
 }
 
 .wheel-latin-text {
-  font-size: clamp(12px, 3.1vw, 14.5px);
+  font-size: clamp(11.5px, 2.9vw, 13.5px);
   font-weight: 400;
   color: var(--blue);
   line-height: 1.25;
-  margin: 0 0 6px;
+  margin: 0 0 5px;
   letter-spacing: 0.2px;
 }
 
 .wheel-meaning-pill {
-  font-size: clamp(10px, 2.4vw, 11.5px);
+  font-size: clamp(9.5px, 2.3vw, 11px);
   font-weight: 400;
   color: var(--gold-deep);
   background: var(--gold-soft);
-  padding: 3px 12px;
+  padding: 2.5px 10px;
   border-radius: 99px;
   margin: 0;
   border: 1px solid rgba(214, 183, 121, 0.35);
@@ -1631,40 +1643,47 @@ body.detail-open .app-shell {
 .wheel-controls-box {
   width: 100%;
   max-width: 440px;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 7px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 14px 16px;
+  border-radius: 18px;
+  padding: 8px 12px;
   box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
 }
 
 .wheel-main-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px;
 }
 
 .wheel-ctrl-btn {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--ink);
-  border-radius: 14px;
-  padding: 8px 10px;
+  border-radius: 12px;
+  padding: 6px 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  font-size: 10px;
+  gap: 2px;
+  font-size: 9.5px;
   font-weight: 650;
   cursor: pointer;
   flex: 1;
-  min-height: 48px;
+  min-height: 42px;
   transition: all 0.15s ease;
+}
+
+.wheel-ctrl-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 .wheel-ctrl-btn:active:not(:disabled) {
@@ -1679,8 +1698,8 @@ body.detail-open .app-shell {
 
 .wheel-play-btn {
   border: 0;
-  width: 58px;
-  height: 58px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: #ffffff;
@@ -1688,9 +1707,14 @@ body.detail-open .app-shell {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.45);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   flex-shrink: 0;
+}
+
+.wheel-play-btn svg {
+  width: 22px;
+  height: 22px;
 }
 
 .wheel-play-btn:active {
@@ -1711,21 +1735,21 @@ body.detail-open .app-shell {
 .wheel-progress-wrap {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .wheel-progress-meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 650;
   color: var(--muted);
 }
 
 .wheel-step-bar-container {
-  width: 90px;
-  height: 5px;
+  width: 80px;
+  height: 4px;
   background: var(--border);
   border-radius: 99px;
   overflow: hidden;
@@ -1740,7 +1764,7 @@ body.detail-open .app-shell {
 
 .wheel-scrubber-slider {
   width: 100%;
-  height: 6px;
+  height: 5px;
   -webkit-appearance: none;
   appearance: none;
   background: var(--border);
@@ -1752,21 +1776,21 @@ body.detail-open .app-shell {
 .wheel-scrubber-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: var(--blue);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
   cursor: pointer;
   border: 2px solid #ffffff;
 }
 
 .wheel-scrubber-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: var(--blue);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
   cursor: pointer;
   border: 2px solid #ffffff;
 }
@@ -1776,7 +1800,7 @@ body.detail-open .app-shell {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px;
   padding-top: 4px;
   border-top: 1px dashed var(--border);
 }
@@ -1784,27 +1808,27 @@ body.detail-open .app-shell {
 .wheel-setting-group {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .wheel-setting-title {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 600;
   color: var(--muted);
 }
 
 .speed-pills {
   display: flex;
-  gap: 4px;
+  gap: 3px;
 }
 
 .speed-pill {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--muted);
-  border-radius: 8px;
-  padding: 3px 7px;
-  font-size: 10.5px;
+  border-radius: 7px;
+  padding: 2.5px 6.5px;
+  font-size: 10px;
   font-weight: 650;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -1820,9 +1844,9 @@ body.detail-open .app-shell {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--muted);
-  border-radius: 8px;
-  padding: 4px 9px;
-  font-size: 10.5px;
+  border-radius: 7px;
+  padding: 3px 8px;
+  font-size: 10px;
   font-weight: 650;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -1848,5 +1872,4 @@ body.detail-open .app-shell {
 .tile-icon.royal {
   background: var(--blue-soft);
   color: var(--blue);
-}
 }
