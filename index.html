@@ -57,91 +57,117 @@
       </div>
     </header>
 
-    <!-- 1. SCREEN: HOME (BERANDA) -->
+    <!-- 1. SCREEN: HOME (BERANDA / DASHBOARD UTAMA DENGAN RODA 99) -->
     <section id="home" class="screen active">
       <div class="hero">
         <div class="hero-kicker">Mengenal Nama-Nama Agung</div>
         <div class="hero-arabic" lang="ar" dir="rtl">اللّٰهُ</div>
         <h1>Asmaul Husna</h1>
         <div class="hero-sub">99 Nama Terbaik Milik Allah Ta'ala</div>
-        <div class="hero-bottom">
-          <span>Kenali · Pahami · Amalkan</span>
-          <span class="hero-pill">99 Nama Lengkap</span>
+      </div>
+
+      <!-- Status Bar: Number Badge (Left), Sound & Favorite (Right) -->
+      <div class="wheel-status-bar">
+        <span class="wheel-num-badge" id="wheelCenterNumber">1 / 99</span>
+        <div class="wheel-header-actions">
+          <button class="wheel-icon-btn-compact" id="wheelSoundBtn" aria-label="Toggle nada lonceng" onclick="WheelController.toggleSound()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+          </button>
+          <button class="wheel-fav-btn-outer" id="wheelFavBtn" aria-label="Simpan ke Favorit" onclick="WheelController.toggleFavorite()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
+            </svg>
+          </button>
         </div>
       </div>
 
-      <div class="section-head">
-        <h2>Menu Utama</h2>
+      <!-- The Radial Wheel & Center Display Stage -->
+      <div class="wheel-stage-container">
+        <div class="wheel-stage" id="wheelStage">
+          <!-- The Dynamic 99-Segment SVG Radial Wheel -->
+          <svg id="wheelSvg" viewBox="0 0 500 500" class="wheel-svg" aria-label="Roda 99 Asmaul Husna" role="img"></svg>
+
+          <!-- Central Active Name Panel -->
+          <div class="wheel-center-card" id="wheelCenterCard" onclick="WheelController.openDetail()" title="Ketuk untuk melihat detail lengkap">
+            <div class="wheel-center-body">
+              <div class="wheel-arabic-wrap">
+                <span class="wheel-arabic-text" id="wheelCenterArabic" lang="ar" dir="rtl">الرَّحْمٰنُ</span>
+              </div>
+              <h2 class="wheel-latin-text" id="wheelCenterLatin">Ar-Rahmān</h2>
+              <div class="wheel-meaning-pill" id="wheelCenterMeaning">Yang Maha Pengasih</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="tile-grid">
-        <button class="action-tile highlight-tile" onclick="showScreen('wheel')">
-          <span class="tile-icon royal">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="9" />
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 3v5M12 16v5M3 12h5M16 12h5" />
+      <!-- Playback Controls -->
+      <div class="wheel-controls-box">
+        <div class="wheel-main-controls">
+          <button class="wheel-ctrl-btn" id="wheelBtnRestart" title="Ulangi dari nomor 1" aria-label="Ulangi dari awal" onclick="WheelController.restart()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
             </svg>
-          </span>
-          <strong>Roda 99 Segmen</strong>
-          <span>Mode putar & auto-baca</span>
-        </button>
+            <span>Ulangi</span>
+          </button>
 
-        <button class="action-tile" onclick="showScreen('list')">
-          <span class="tile-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
+          <button class="wheel-ctrl-btn" id="wheelBtnPrev" title="Nama Sebelumnya" aria-label="Sebelumnya" onclick="WheelController.prev()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </span>
-          <strong>99 Asmaul Husna</strong>
-          <span>Baca lengkap 1–99</span>
-        </button>
+            <span>Sebelumnya</span>
+          </button>
 
-        <button class="action-tile" onclick="showScreen('favorites')">
-          <span class="tile-icon rose">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path
-                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
+          <button class="wheel-play-btn" id="wheelPlayBtn" title="Play / Pause Baca Otomatis" aria-label="Mulai Baca Otomatis" onclick="WheelController.togglePlay()">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 4.5v15a1 1 0 0 0 1.54.84l11.5-7.5a1 1 0 0 0 0-1.68l-11.5-7.5A1 1 0 0 0 7 4.5Z"/>
             </svg>
-          </span>
-          <strong>Koleksi Favorit</strong>
-          <span id="homeFavCount">0 tersimpan</span>
-        </button>
+          </button>
 
-        <button class="action-tile" onclick="openLastRead()">
-          <span class="tile-icon emerald">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 7v5l3 2" stroke-linecap="round" />
+          <button class="wheel-ctrl-btn" id="wheelBtnNext" title="Nama Berikutnya" aria-label="Berikutnya" onclick="WheelController.next()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="m9 18 6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </span>
-          <strong>Terakhir Dibaca</strong>
-          <span id="lastReadText">Lanjutkan membaca</span>
-        </button>
+            <span>Berikutnya</span>
+          </button>
 
-        <button class="action-tile" onclick="showScreen('about')">
-          <span class="tile-icon gold">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 11v5m0-8h.01" stroke-linecap="round" />
+          <button class="wheel-ctrl-btn" id="wheelBtnAuto" title="Auto 1–99" aria-label="Auto 1–99" onclick="WheelController.autoAll()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
-          </span>
-          <strong>Tentang Aplikasi</strong>
-          <span>Informasi & panduan</span>
-        </button>
-      </div>
+            <span>Auto 1–99</span>
+          </button>
+        </div>
 
-      <div class="verse-card">
-        <svg class="verse-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="1.6">
-          <path
-            d="M3 5.5A2.5 2.5 0 0 1 5.5 3H12v17H5.5A2.5 2.5 0 0 0 3 22V5.5Zm18 0A2.5 2.5 0 0 0 18.5 3H12v17h6.5A2.5 2.5 0 0 1 21 22V5.5Z" />
-        </svg>
-        <div>
-          <h3>Keutamaan Mengingat Asmaul Husna</h3>
-          <p>“Dan Allah memiliki Asmaul Husna (nama-nama yang terbaik), maka bermohonlah kepada-Nya dengan
-            menyebutnya...”</p>
-          <span class="verse-ref">QS. Al-A'raf: 180</span>
+        <!-- Progress Scrubber & Countdown Indicator -->
+        <div class="wheel-progress-wrap">
+          <div class="wheel-progress-meta">
+            <span id="wheelProgressLabel">Nama ke-1 dari 99</span>
+            <div class="wheel-step-bar-container" title="Waktu baca nama aktif">
+              <div class="wheel-step-bar-fill" id="wheelStepProgress"></div>
+            </div>
+          </div>
+          <input type="range" class="wheel-scrubber-slider" id="wheelScrubber" min="1" max="99" value="1" step="1" aria-label="Navigasi ke nomor nama" />
+        </div>
+
+        <!-- Duration & Loop Settings -->
+        <div class="wheel-settings-strip">
+          <div class="wheel-setting-group">
+            <span class="wheel-setting-title">Durasi baca:</span>
+            <div class="speed-pills">
+              <button class="speed-pill" data-sec="1" onclick="WheelController.setDuration(1)">1s</button>
+              <button class="speed-pill active" data-sec="2" onclick="WheelController.setDuration(2)">2s</button>
+              <button class="speed-pill" data-sec="3" onclick="WheelController.setDuration(3)">3s</button>
+              <button class="speed-pill" data-sec="5" onclick="WheelController.setDuration(5)">5s</button>
+            </div>
+          </div>
+          <button class="loop-chip" id="wheelLoopBtn" onclick="WheelController.toggleLoop()">
+            Ulangi: Sekali
+          </button>
         </div>
       </div>
     </section>
@@ -307,116 +333,7 @@
       </div>
     </section>
 
-    <!-- 6. SCREEN: WHEEL (RODA 99 SEGMEN - ASMAUL HUSNA 99 RADIAL READER) -->
-    <section id="wheel" class="screen">
-      <!-- Wheel Screen Top Row: Number Badge (Left), Title (Center), Sound & Fav (Right) -->
-      <div class="wheel-status-bar">
-        <span class="wheel-num-badge" id="wheelCenterNumber">1 / 99</span>
-        <div class="wheel-header-center">
-          <span class="wheel-kicker-mini">Roda 99 Segmen</span>
-        </div>
-        <div class="wheel-header-actions">
-          <button class="wheel-icon-btn-compact" id="wheelSoundBtn" aria-label="Toggle nada lonceng" onclick="WheelController.toggleSound()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-            </svg>
-          </button>
-          <button class="wheel-fav-btn-outer" id="wheelFavBtn" aria-label="Simpan ke Favorit" onclick="WheelController.toggleFavorite()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
-            </svg>
-          </button>
-        </div>
-      </div>
 
-      <!-- The Radial Wheel & Center Display Stage -->
-      <div class="wheel-stage-container">
-        <div class="wheel-stage" id="wheelStage">
-          <!-- The Dynamic 99-Segment SVG Radial Wheel -->
-          <svg id="wheelSvg" viewBox="0 0 500 500" class="wheel-svg" aria-label="Roda 99 Asmaul Husna" role="img"></svg>
-
-          <!-- Central Active Name Panel (Clean & Focused) -->
-          <div class="wheel-center-card" id="wheelCenterCard" onclick="WheelController.openDetail()" title="Ketuk untuk melihat detail lengkap">
-            <div class="wheel-center-body">
-              <div class="wheel-arabic-wrap">
-                <span class="wheel-arabic-text" id="wheelCenterArabic" lang="ar" dir="rtl">الرَّحْمٰنُ</span>
-              </div>
-              <h2 class="wheel-latin-text" id="wheelCenterLatin">Ar-Rahmān</h2>
-              <div class="wheel-meaning-pill" id="wheelCenterMeaning">Yang Maha Pengasih</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Playback Controls -->
-      <div class="wheel-controls-box">
-        <div class="wheel-main-controls">
-          <button class="wheel-ctrl-btn" id="wheelBtnRestart" title="Ulangi dari nomor 1" aria-label="Ulangi dari awal" onclick="WheelController.restart()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-              <path d="M3 3v5h5"/>
-            </svg>
-            <span>Ulangi</span>
-          </button>
-
-          <button class="wheel-ctrl-btn" id="wheelBtnPrev" title="Nama Sebelumnya" aria-label="Sebelumnya" onclick="WheelController.prev()">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Sebelumnya</span>
-          </button>
-
-          <button class="wheel-play-btn" id="wheelPlayBtn" title="Play / Pause Baca Otomatis" aria-label="Mulai Baca Otomatis" onclick="WheelController.togglePlay()">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M7 4.5v15a1 1 0 0 0 1.54.84l11.5-7.5a1 1 0 0 0 0-1.68l-11.5-7.5A1 1 0 0 0 7 4.5Z"/>
-            </svg>
-          </button>
-
-          <button class="wheel-ctrl-btn" id="wheelBtnNext" title="Nama Berikutnya" aria-label="Berikutnya" onclick="WheelController.next()">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="m9 18 6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Berikutnya</span>
-          </button>
-
-          <button class="wheel-ctrl-btn" id="wheelBtnAuto" title="Auto 1–99" aria-label="Auto 1–99" onclick="WheelController.autoAll()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-            <span>Auto 1–99</span>
-          </button>
-        </div>
-
-        <!-- Progress Scrubber & Countdown Indicator -->
-        <div class="wheel-progress-wrap">
-          <div class="wheel-progress-meta">
-            <span id="wheelProgressLabel">Nama ke-1 dari 99</span>
-            <div class="wheel-step-bar-container" title="Waktu baca nama aktif">
-              <div class="wheel-step-bar-fill" id="wheelStepProgress"></div>
-            </div>
-          </div>
-          <input type="range" class="wheel-scrubber-slider" id="wheelScrubber" min="1" max="99" value="1" step="1" aria-label="Navigasi ke nomor nama" />
-        </div>
-
-        <!-- Duration & Loop Settings -->
-        <div class="wheel-settings-strip">
-          <div class="wheel-setting-group">
-            <span class="wheel-setting-title">Durasi baca:</span>
-            <div class="speed-pills">
-              <button class="speed-pill" data-sec="1" onclick="WheelController.setDuration(1)">1s</button>
-              <button class="speed-pill active" data-sec="2" onclick="WheelController.setDuration(2)">2s</button>
-              <button class="speed-pill" data-sec="3" onclick="WheelController.setDuration(3)">3s</button>
-              <button class="speed-pill" data-sec="5" onclick="WheelController.setDuration(5)">5s</button>
-            </div>
-          </div>
-          <button class="loop-chip" id="wheelLoopBtn" onclick="WheelController.toggleLoop()">
-            Ulangi: Sekali
-          </button>
-        </div>
-      </div>
-    </section>
 
     <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav" aria-label="Navigasi Utama">

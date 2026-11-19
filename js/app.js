@@ -112,39 +112,55 @@ function setupEventListeners() {
 function showScreen(screenId) {
   if (screenId === 'detail') return;
 
-  // Lifecycle check: if leaving wheel screen, pause playback safely
-  if (AppState.currentScreen === 'wheel' && screenId !== 'wheel') {
+  const isWheelNav = screenId === 'wheel';
+  const targetScreen = isWheelNav ? 'home' : screenId;
+
+  // Lifecycle check: if leaving home screen, pause wheel playback safely
+  if (AppState.currentScreen === 'home' && targetScreen !== 'home') {
     if (window.WheelController && typeof window.WheelController.onLeaveScreen === 'function') {
       window.WheelController.onLeaveScreen();
     }
   }
 
-  AppState.currentScreen = screenId;
+  AppState.currentScreen = targetScreen;
   document.body.classList.remove('detail-open');
-  document.body.classList.toggle('wheel-open', screenId === 'wheel');
+  document.body.classList.remove('wheel-open');
 
   // Update screens visibility
   document.querySelectorAll('.screen').forEach((el) => {
-    el.classList.toggle('active', el.id === screenId);
+    el.classList.toggle('active', el.id === targetScreen);
   });
 
   // Update bottom nav button states
   document.querySelectorAll('.nav-btn').forEach((btn) => {
-    btn.classList.toggle('active', btn.dataset.screen === screenId);
+    const bScreen = btn.dataset.screen;
+    if (isWheelNav) {
+      btn.classList.toggle('active', bScreen === 'wheel');
+    } else {
+      btn.classList.toggle('active', bScreen === targetScreen);
+    }
   });
 
-  if (screenId === 'list') {
+  if (targetScreen === 'list') {
     renderList();
-  } else if (screenId === 'favorites') {
+  } else if (targetScreen === 'favorites') {
     renderFavorites();
-  } else if (screenId === 'wheel') {
+  } else if (targetScreen === 'home') {
     if (window.WheelController && typeof window.WheelController.onEnterScreen === 'function') {
       window.WheelController.onEnterScreen();
+    }
+    if (isWheelNav) {
+      setTimeout(() => {
+        const stage = document.getElementById('wheelStage');
+        if (stage) stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 60);
     }
   }
 
   updateHomeMeta();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (!isWheelNav) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 // Open Detail View for Asmaul Husna #id

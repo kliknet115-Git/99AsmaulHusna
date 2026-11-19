@@ -1,5 +1,5 @@
 // Service Worker for 99 Asmaul Husna PWA
-const CACHE_NAME = 'asmaul-husna-v1.3.5';
+const CACHE_NAME = 'asmaul-husna-v1.4.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

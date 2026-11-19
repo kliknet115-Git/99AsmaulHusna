@@ -533,7 +533,7 @@ const WheelController = (() => {
   function openDetail() {
     pause(); // pause reading when navigating away
     if (typeof window.openDetail === 'function') {
-      window.openDetail(state.currentId, 'wheel');
+      window.openDetail(state.currentId, 'home');
     }
   }
 
