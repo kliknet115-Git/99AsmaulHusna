@@ -1,5 +1,5 @@
 // Service Worker for 99 Asmaul Husna PWA
-const CACHE_NAME = 'asmaul-husna-v1.1.2';
+const CACHE_NAME = 'asmaul-husna-v1.2.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -20,7 +20,6 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      // Use cache.addAll with error-resilience
       return Promise.allSettled(
         ASSETS_TO_CACHE.map((url) =>
           cache.add(url).catch((err) => {
@@ -32,7 +31,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Activate Event - Clean old caches
+// Activate Event - Clean old caches immediately
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
@@ -48,50 +47,48 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch Event - Cache First, Network Fallback
+// Fetch Event - Network First for HTML, Stale-while-revalidate for assets
 self.addEventListener('fetch', (event) => {
-  // Only handle GET requests
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
+  const isHTML = event.request.mode === 'navigate' ||
+                 event.request.headers.get('accept')?.includes('text/html') ||
+                 url.pathname.endsWith('.html') ||
+                 url.pathname.endsWith('/');
 
-  // If requesting page or asset
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        // Return cached, and optionally update cache in background
-        fetch(event.request)
-          .then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              caches.open(CACHE_NAME).then((cache) => {
-                cache.put(event.request, networkResponse.clone());
-              });
-            }
-          })
-          .catch(() => {
-            /* Offline, silence */
-          });
-        return cachedResponse;
-      }
-
-      // If not cached, fetch from network
-      return fetch(event.request)
+  if (isHTML) {
+    // Network First for HTML so user always gets the freshest version when online
+    event.respondWith(
+      fetch(event.request)
         .then((networkResponse) => {
-          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-            return networkResponse;
+          if (networkResponse && networkResponse.status === 200) {
+            const copy = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
           }
-          const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
           return networkResponse;
         })
         .catch(() => {
-          // If offline and request is an HTML navigation, return cached index.html
-          if (event.request.mode === 'navigate') {
-            return caches.match('./index.html') || caches.match('./');
+          return caches.match(event.request) || caches.match('./index.html') || caches.match('./');
+        })
+    );
+    return;
+  }
+
+  // Assets (CSS, JS, images): Stale-While-Revalidate
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      const fetchPromise = fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const copy = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
           }
-        });
+          return networkResponse;
+        })
+        .catch(() => cachedResponse);
+
+      return cachedResponse || fetchPromise;
     })
   );
 });

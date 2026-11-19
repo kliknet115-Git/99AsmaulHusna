@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="theme-color" id="metaThemeColor" content="#17365d" />
 
@@ -22,16 +24,20 @@
 
   <!-- SEO & Social Meta -->
   <title>Asmaul Husna — 99 Nama-nama Allah</title>
-  <meta name="description" content="Aplikasi Mobile-first PWA 99 Asmaul Husna dioptimalkan untuk iPhone Safari. Dilengkapi teks Arab bertasydid, transliterasi Latin, arti, makna, dalil, audio, tasbih digital, dan kuis hafalan." />
+  <meta name="description"
+    content="Aplikasi Mobile-first PWA 99 Asmaul Husna dioptimalkan untuk iPhone Safari. Dilengkapi teks Arab bertasydid, transliterasi Latin, arti, makna, dalil, audio, tasbih digital, dan kuis hafalan." />
 
   <!-- Arabic Typography from Google Fonts (with offline serif fallback) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@500;700&display=swap"
+    rel="stylesheet">
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="./css/style.css" />
 </head>
+
 <body>
   <div class="app-shell">
     <!-- Top Navigation Bar -->
@@ -44,7 +50,7 @@
         <button class="icon-btn" id="themeToggleBtn" aria-label="Ganti tema" onclick="toggleTheme()">
           <span id="themeToggleIcon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
             </svg>
           </span>
         </button>
@@ -66,10 +72,12 @@
 
       <div class="search-wrap">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7"/><path d="m20 20-4-4" stroke-linecap="round"/>
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-4-4" stroke-linecap="round" />
         </svg>
         <input id="homeSearch" type="search" placeholder="Cari nama, Arab, nomor, atau arti..." autocomplete="off" />
-        <button class="clear-search-btn" id="clearHomeSearch" onclick="clearSearch('homeSearch','clearHomeSearch')">✕</button>
+        <button class="clear-search-btn" id="clearHomeSearch"
+          onclick="clearSearch('homeSearch','clearHomeSearch')">✕</button>
       </div>
 
       <div class="section-head">
@@ -81,7 +89,7 @@
         <button class="action-tile" onclick="showScreen('list')">
           <span class="tile-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
             </svg>
           </span>
           <strong>99 Asmaul Husna</strong>
@@ -91,7 +99,8 @@
         <button class="action-tile" onclick="showScreen('favorites')">
           <span class="tile-icon rose">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+              <path
+                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
             </svg>
           </span>
           <strong>Koleksi Favorit</strong>
@@ -101,8 +110,8 @@
         <button class="action-tile" onclick="openLastRead()">
           <span class="tile-icon emerald">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M12 7v5l3 2" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 2" stroke-linecap="round" />
             </svg>
           </span>
           <strong>Terakhir Dibaca</strong>
@@ -112,8 +121,8 @@
         <button class="action-tile" onclick="showScreen('about')">
           <span class="tile-icon gold">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M12 11v5m0-8h.01" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 11v5m0-8h.01" stroke-linecap="round" />
             </svg>
           </span>
           <strong>Tentang Aplikasi</strong>
@@ -122,12 +131,15 @@
       </div>
 
       <div class="verse-card">
-        <svg class="verse-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H12v17H5.5A2.5 2.5 0 0 0 3 22V5.5Zm18 0A2.5 2.5 0 0 0 18.5 3H12v17h6.5A2.5 2.5 0 0 1 21 22V5.5Z"/>
+        <svg class="verse-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.6">
+          <path
+            d="M3 5.5A2.5 2.5 0 0 1 5.5 3H12v17H5.5A2.5 2.5 0 0 0 3 22V5.5Zm18 0A2.5 2.5 0 0 0 18.5 3H12v17h6.5A2.5 2.5 0 0 1 21 22V5.5Z" />
         </svg>
         <div>
           <h3>Keutamaan Mengingat Asmaul Husna</h3>
-          <p>“Dan Allah memiliki Asmaul Husna (nama-nama yang terbaik), maka bermohonlah kepada-Nya dengan menyebutnya...”</p>
+          <p>“Dan Allah memiliki Asmaul Husna (nama-nama yang terbaik), maka bermohonlah kepada-Nya dengan
+            menyebutnya...”</p>
           <span class="verse-ref">QS. Al-A'raf: 180</span>
         </div>
       </div>
@@ -143,10 +155,12 @@
 
       <div class="search-wrap" style="margin-top:10px;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7"/><path d="m20 20-4-4" stroke-linecap="round"/>
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-4-4" stroke-linecap="round" />
         </svg>
         <input id="listSearch" type="search" placeholder="Cari nama, Arab, arti, atau nomor..." autocomplete="off" />
-        <button class="clear-search-btn" id="clearListSearch" onclick="clearSearch('listSearch','clearListSearch')">✕</button>
+        <button class="clear-search-btn" id="clearListSearch"
+          onclick="clearSearch('listSearch','clearListSearch')">✕</button>
       </div>
 
       <div class="filters-bar">
@@ -169,14 +183,15 @@
       <div class="detail-top">
         <button class="back-button" onclick="goBack()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           <span id="detailBackLabel">Daftar</span>
         </button>
         <div class="detail-top-right">
           <button id="detailFavoriteTop" class="icon-btn" aria-label="Tambah favorit" onclick="toggleFavorite()">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+              <path
+                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
             </svg>
           </button>
         </div>
@@ -195,7 +210,8 @@
           <div class="detail-section">
             <h3>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
+                <path
+                  d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
               </svg>
               Makna & Penjelasan
             </h3>
@@ -205,8 +221,8 @@
           <div class="detail-section">
             <h3>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M12 2 4 5v6c0 5 3.4 8.8 8 11 4.6-2.2 8-6 8-11V5l-8-3Z"/>
-                <path d="m9 12 2 2 4-4"/>
+                <path d="M12 2 4 5v6c0 5 3.4 8.8 8 11 4.6-2.2 8-6 8-11V5l-8-3Z" />
+                <path d="m9 12 2 2 4-4" />
               </svg>
               Dalil Al-Qur'an / Referensi
             </h3>
@@ -218,8 +234,8 @@
             <div class="tasbih-head">
               <span class="tasbih-title">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="9"/>
-                  <path d="m9 12 2 2 4-4"/>
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="m9 12 2 2 4-4" />
                 </svg>
                 Tasbih Dzikir Nama Ini
               </span>
@@ -237,10 +253,10 @@
               </button>
               <button class="tasbih-reset-btn" onclick="resetTasbih()" aria-label="Reset hitungan">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
-                  <path d="M21 3v5h-5"/>
-                  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
-                  <path d="M3 21v-5h5"/>
+                  <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                  <path d="M21 3v5h-5" />
+                  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                  <path d="M3 21v-5h5" />
                 </svg>
               </button>
             </div>
@@ -251,7 +267,7 @@
       <div class="detail-pagination">
         <button id="prevName" class="pagination-btn" onclick="moveDetail(-1)">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           Sebelumnya
         </button>
@@ -259,7 +275,7 @@
         <button id="nextName" class="pagination-btn" onclick="moveDetail(1)">
           Berikutnya
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="m9 18 6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="m9 18 6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </button>
       </div>
@@ -294,30 +310,31 @@
     <nav class="bottom-nav" aria-label="Navigasi Utama">
       <button class="nav-btn active" data-screen="home" onclick="showScreen('home')">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z" stroke-linejoin="round"/>
+          <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z" stroke-linejoin="round" />
         </svg>
         <span>Beranda</span>
       </button>
 
       <button class="nav-btn" data-screen="list" onclick="showScreen('list')">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <path d="M9 6h12M9 12h12M9 18h12" stroke-linecap="round"/>
-          <path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01" stroke-width="3" stroke-linecap="round"/>
+          <path d="M9 6h12M9 12h12M9 18h12" stroke-linecap="round" />
+          <path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01" stroke-width="3" stroke-linecap="round" />
         </svg>
         <span>Daftar</span>
       </button>
 
       <button class="nav-btn" data-screen="favorites" onclick="showScreen('favorites')">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>
+          <path
+            d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
         </svg>
         <span>Favorit</span>
       </button>
 
       <button class="nav-btn" data-screen="about" onclick="showScreen('about')">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M12 11v5m0-8h.01" stroke-linecap="round"/>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 11v5m0-8h.01" stroke-linecap="round" />
         </svg>
         <span>Tentang</span>
       </button>
@@ -332,4 +349,5 @@
   <script src="./js/app.js"></script>
   <script src="./js/pwa.js"></script>
 </body>
+
 </html>
