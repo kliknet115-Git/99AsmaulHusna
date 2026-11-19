@@ -10,7 +10,7 @@ const WheelController = (() => {
     data: [],
     currentId: 1,
     isPlaying: false,
-    duration: 8, // seconds per name (5, 8, 10, 15)
+    duration: 2, // seconds per name (1, 2, 3, 5)
     loop: false, // repeat after 99
     soundEnabled: true,
     timer: null,
@@ -91,7 +91,14 @@ const WheelController = (() => {
 
     // Load saved preferences
     const savedDuration = localStorage.getItem('asmaul-wheel-duration');
-    if (savedDuration) state.duration = parseInt(savedDuration, 10) || 8;
+    if (savedDuration) {
+      const parsed = parseInt(savedDuration, 10);
+      if ([1, 2, 3, 5].includes(parsed)) {
+        state.duration = parsed;
+      } else {
+        state.duration = 2;
+      }
+    }
 
     const savedLoop = localStorage.getItem('asmaul-wheel-loop');
     if (savedLoop !== null) state.loop = savedLoop === 'true';
@@ -492,10 +499,10 @@ const WheelController = (() => {
     }
   }
 
-  // Set duration per name (5, 8, 10, 15 seconds)
+  // Set duration per name (1, 2, 3, 5 seconds)
   function setDuration(sec) {
     sec = parseInt(sec, 10);
-    if (![5, 8, 10, 15].includes(sec)) return;
+    if (![1, 2, 3, 5].includes(sec)) return;
     state.duration = sec;
     localStorage.setItem('asmaul-wheel-duration', String(sec));
     updateControlsUI();

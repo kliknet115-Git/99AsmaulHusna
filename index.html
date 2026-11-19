@@ -416,10 +416,10 @@
           <div class="wheel-setting-group">
             <span class="wheel-setting-title">Durasi baca:</span>
             <div class="speed-pills">
+              <button class="speed-pill" data-sec="1" onclick="WheelController.setDuration(1)">1s</button>
+              <button class="speed-pill active" data-sec="2" onclick="WheelController.setDuration(2)">2s</button>
+              <button class="speed-pill" data-sec="3" onclick="WheelController.setDuration(3)">3s</button>
               <button class="speed-pill" data-sec="5" onclick="WheelController.setDuration(5)">5s</button>
-              <button class="speed-pill active" data-sec="8" onclick="WheelController.setDuration(8)">8s</button>
-              <button class="speed-pill" data-sec="10" onclick="WheelController.setDuration(10)">10s</button>
-              <button class="speed-pill" data-sec="15" onclick="WheelController.setDuration(15)">15s</button>
             </div>
           </div>
           <button class="loop-chip" id="wheelLoopBtn" onclick="WheelController.toggleLoop()">
