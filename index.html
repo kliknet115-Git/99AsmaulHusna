@@ -327,35 +327,30 @@
         </div>
       </div>
 
+      <!-- Wheel Status Bar: Number Badge (Left) & Favorite Button (Right) -->
+      <div class="wheel-status-bar">
+        <span class="wheel-num-badge" id="wheelCenterNumber">1 / 99</span>
+        <button class="wheel-fav-btn-outer" id="wheelFavBtn" aria-label="Simpan ke Favorit" onclick="WheelController.toggleFavorite()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
+          </svg>
+        </button>
+      </div>
+
       <!-- The Radial Wheel & Center Display Stage -->
       <div class="wheel-stage-container">
         <div class="wheel-stage" id="wheelStage">
           <!-- The Dynamic 99-Segment SVG Radial Wheel -->
           <svg id="wheelSvg" viewBox="0 0 500 500" class="wheel-svg" aria-label="Roda 99 Asmaul Husna" role="img"></svg>
 
-          <!-- Central Active Name Panel (Mihrab/Scalloped arched display) -->
+          <!-- Central Active Name Panel (Clean & Focused) -->
           <div class="wheel-center-card" id="wheelCenterCard" onclick="WheelController.openDetail()" title="Ketuk untuk melihat detail lengkap">
-            <div class="wheel-center-top">
-              <span class="wheel-num-badge" id="wheelCenterNumber">1 / 99</span>
-              <button class="wheel-fav-btn" id="wheelFavBtn" aria-label="Simpan ke Favorit" onclick="event.stopPropagation(); WheelController.toggleFavorite()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
-                </svg>
-              </button>
-            </div>
-
             <div class="wheel-center-body">
               <div class="wheel-arabic-wrap">
                 <span class="wheel-arabic-text" id="wheelCenterArabic" lang="ar" dir="rtl">الرَّحْمٰنُ</span>
               </div>
               <h2 class="wheel-latin-text" id="wheelCenterLatin">Ar-Rahmān</h2>
               <div class="wheel-meaning-pill" id="wheelCenterMeaning">Yang Maha Pengasih</div>
-              <p class="wheel-desc-text" id="wheelCenterDesc">Allah melimpahkan kasih sayang-Nya yang teramat luas kepada seluruh makhluk di alam semesta tanpa terkecuali.</p>
-              <div class="wheel-ref-tag" id="wheelCenterRef">QS. Al-Fatihah: 3</div>
-            </div>
-
-            <div class="wheel-center-footer">
-              <span>Buka Detail & Dzikir ↗</span>
             </div>
           </div>
         </div>

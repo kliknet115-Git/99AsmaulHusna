@@ -286,25 +286,12 @@ const WheelController = (() => {
     const centerArabic = document.getElementById('wheelCenterArabic');
     const centerLatin = document.getElementById('wheelCenterLatin');
     const centerMeaning = document.getElementById('wheelCenterMeaning');
-    const centerDesc = document.getElementById('wheelCenterDesc');
-    const centerRef = document.getElementById('wheelCenterRef');
     const favBtn = document.getElementById('wheelFavBtn');
 
     if (centerNumber) centerNumber.textContent = `${item.number} / 99`;
     if (centerArabic) centerArabic.textContent = item.arabic;
     if (centerLatin) centerLatin.textContent = item.transliteration;
     if (centerMeaning) centerMeaning.textContent = item.meaning;
-    if (centerDesc) centerDesc.textContent = item.description || 'Maha Suci Allah dengan segala sifat keagungan-Nya.';
-
-    if (centerRef) {
-      const refText = item.references && item.references.length > 0 ? item.references[0] : '';
-      if (refText) {
-        centerRef.textContent = refText;
-        centerRef.style.display = 'inline-block';
-      } else {
-        centerRef.style.display = 'none';
-      }
-    }
 
     // Update favorite button state
     if (favBtn) {
