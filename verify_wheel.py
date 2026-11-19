@@ -45,7 +45,7 @@ print(f'[TEST 3 PASSED] Bottom navigation verified with {len(nav_buttons)} tabs!
 with open('sw.js', 'r', encoding='utf-8') as f:
     sw_code = f.read()
 
-assert 'asmaul-husna-v1.4.1' in sw_code, 'SW CACHE_NAME not bumped to v1.4.1'
+assert 'asmaul-husna-v1.5.0' in sw_code, 'SW CACHE_NAME not bumped to v1.5.0'
 assert './data/asmaul-husna.json' in sw_code, 'data/asmaul-husna.json missing in SW cache'
 assert './js/wheel.js' in sw_code, 'js/wheel.js missing in SW cache'
 
