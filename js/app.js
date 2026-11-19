@@ -112,8 +112,7 @@ function setupEventListeners() {
 function showScreen(screenId) {
   if (screenId === 'detail') return;
 
-  const isWheelNav = screenId === 'wheel';
-  const targetScreen = isWheelNav ? 'home' : screenId;
+  const targetScreen = screenId === 'wheel' ? 'home' : screenId;
 
   // Lifecycle check: if leaving home screen, pause wheel playback safely
   if (AppState.currentScreen === 'home' && targetScreen !== 'home') {
@@ -124,7 +123,6 @@ function showScreen(screenId) {
 
   AppState.currentScreen = targetScreen;
   document.body.classList.remove('detail-open');
-  document.body.classList.remove('wheel-open');
 
   // Update screens visibility
   document.querySelectorAll('.screen').forEach((el) => {
@@ -133,12 +131,7 @@ function showScreen(screenId) {
 
   // Update bottom nav button states
   document.querySelectorAll('.nav-btn').forEach((btn) => {
-    const bScreen = btn.dataset.screen;
-    if (isWheelNav) {
-      btn.classList.toggle('active', bScreen === 'wheel');
-    } else {
-      btn.classList.toggle('active', bScreen === targetScreen);
-    }
+    btn.classList.toggle('active', btn.dataset.screen === targetScreen);
   });
 
   if (targetScreen === 'list') {
@@ -149,18 +142,10 @@ function showScreen(screenId) {
     if (window.WheelController && typeof window.WheelController.onEnterScreen === 'function') {
       window.WheelController.onEnterScreen();
     }
-    if (isWheelNav) {
-      setTimeout(() => {
-        const stage = document.getElementById('wheelStage');
-        if (stage) stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 60);
-    }
   }
 
   updateHomeMeta();
-  if (!isWheelNav) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Open Detail View for Asmaul Husna #id
@@ -228,10 +213,10 @@ function goBack() {
   document.body.classList.remove('detail-open');
   if (AppState.previousScreen === 'favorites') {
     showScreen('favorites');
-  } else if (AppState.previousScreen === 'home') {
+  } else if (AppState.previousScreen === 'home' || AppState.previousScreen === 'wheel') {
     showScreen('home');
-  } else if (AppState.previousScreen === 'wheel') {
-    showScreen('wheel');
+  } else if (AppState.previousScreen === 'about') {
+    showScreen('about');
   } else {
     showScreen('list');
   }

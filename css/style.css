@@ -1227,7 +1227,7 @@ body.detail-open .app-shell {
   -webkit-backdrop-filter: blur(25px);
   border-top: 1px solid var(--border);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   box-shadow: 0 -4px 20px rgba(15, 33, 60, 0.08);
   transition: background 0.3s;
 }

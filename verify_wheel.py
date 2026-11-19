@@ -35,31 +35,30 @@ for rid in required_ids:
 
 print('[TEST 2 PASSED] All 19 required wheel DOM IDs verified in index.html!')
 
-# 3. Check bottom navigation has 5 buttons
+# 3. Check bottom navigation has 4 buttons
 import re
 nav_buttons = re.findall(r'<button[^>]*class=["\'][^"\']*nav-btn[^"\']*["\']', html)
-assert len(nav_buttons) == 5, f'Expected 5 bottom nav buttons, found {len(nav_buttons)}'
+assert len(nav_buttons) == 4, f'Expected 4 bottom nav buttons, found {len(nav_buttons)}'
 print(f'[TEST 3 PASSED] Bottom navigation verified with {len(nav_buttons)} tabs!')
 
 # 4. Check sw.js cache items
 with open('sw.js', 'r', encoding='utf-8') as f:
     sw_code = f.read()
 
-assert 'asmaul-husna-v1.4.0' in sw_code, 'SW CACHE_NAME not bumped to v1.4.0'
+assert 'asmaul-husna-v1.4.1' in sw_code, 'SW CACHE_NAME not bumped to v1.4.1'
 assert './data/asmaul-husna.json' in sw_code, 'data/asmaul-husna.json missing in SW cache'
 assert './js/wheel.js' in sw_code, 'js/wheel.js missing in SW cache'
 
-print('[TEST 4 PASSED] Service Worker v1.3.0 and cache manifest verified!')
+print('[TEST 4 PASSED] Service Worker and cache manifest verified!')
 
 # 5. Check CSS rules
 with open('css/style.css', 'r', encoding='utf-8') as f:
     css_code = f.read()
 
-assert '#wheel' in css_code, '#wheel missing in CSS'
 assert '.wheel-svg' in css_code, '.wheel-svg missing in CSS'
 assert '.wheel-segment.active' in css_code, '.wheel-segment.active missing in CSS'
 assert '.wheel-center-card' in css_code, '.wheel-center-card missing in CSS'
-assert 'grid-template-columns: repeat(5, 1fr)' in css_code, 'bottom-nav 5-col missing in CSS'
+assert 'grid-template-columns: repeat(4, 1fr)' in css_code, 'bottom-nav 4-col missing in CSS'
 
-print('[TEST 5 PASSED] CSS styling for Wheel Screen and 5-col navigation verified!')
+print('[TEST 5 PASSED] CSS styling for Wheel Screen and 4-col navigation verified!')
 print('\n===> ALL TESTS COMPLETED SUCCESSFULLY! <===')
