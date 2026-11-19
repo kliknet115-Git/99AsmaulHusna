@@ -1,12 +1,14 @@
 // Service Worker for 99 Asmaul Husna PWA
-const CACHE_NAME = 'asmaul-husna-v1.2.4';
+const CACHE_NAME = 'asmaul-husna-v1.3.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.webmanifest',
   './manifest.json',
   './css/style.css',
+  './data/asmaul-husna.json',
   './js/data.js',
+  './js/wheel.js',
   './js/app.js',
   './js/pwa.js',
   './icons/apple-touch-icon.png',

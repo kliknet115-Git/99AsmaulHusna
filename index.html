@@ -75,6 +75,18 @@
       </div>
 
       <div class="tile-grid">
+        <button class="action-tile highlight-tile" onclick="showScreen('wheel')">
+          <span class="tile-icon royal">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="9" />
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 3v5M12 16v5M3 12h5M16 12h5" />
+            </svg>
+          </span>
+          <strong>Roda 99 Segmen</strong>
+          <span>Mode putar & auto-baca</span>
+        </button>
+
         <button class="action-tile" onclick="showScreen('list')">
           <span class="tile-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -295,6 +307,128 @@
       </div>
     </section>
 
+    <!-- 6. SCREEN: WHEEL (RODA 99 SEGMEN - ASMAUL HUSNA 99 RADIAL READER) -->
+    <section id="wheel" class="screen">
+      <!-- Wheel Screen Header -->
+      <div class="wheel-header">
+        <div class="wheel-header-meta">
+          <div class="wheel-kicker">Roda 99 Segmen Interaktif</div>
+          <h1 class="wheel-title">Asmaul Husna</h1>
+          <p class="wheel-subtitle">99 Nama-nama Allah</p>
+        </div>
+        <div class="wheel-header-actions">
+          <button class="icon-btn" id="wheelSoundBtn" aria-label="Toggle nada lonceng" onclick="WheelController.toggleSound()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- The Radial Wheel & Center Display Stage -->
+      <div class="wheel-stage-container">
+        <div class="wheel-stage" id="wheelStage">
+          <!-- The Dynamic 99-Segment SVG Radial Wheel -->
+          <svg id="wheelSvg" viewBox="0 0 500 500" class="wheel-svg" aria-label="Roda 99 Asmaul Husna" role="img"></svg>
+
+          <!-- Central Active Name Panel (Mihrab/Scalloped arched display) -->
+          <div class="wheel-center-card" id="wheelCenterCard" onclick="WheelController.openDetail()" title="Ketuk untuk melihat detail lengkap">
+            <div class="wheel-center-top">
+              <span class="wheel-num-badge" id="wheelCenterNumber">1 / 99</span>
+              <button class="wheel-fav-btn" id="wheelFavBtn" aria-label="Simpan ke Favorit" onclick="event.stopPropagation(); WheelController.toggleFavorite()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="wheel-center-body">
+              <div class="wheel-arabic-wrap">
+                <span class="wheel-arabic-text" id="wheelCenterArabic" lang="ar" dir="rtl">الرَّحْمٰنُ</span>
+              </div>
+              <h2 class="wheel-latin-text" id="wheelCenterLatin">Ar-Rahmān</h2>
+              <div class="wheel-meaning-pill" id="wheelCenterMeaning">Yang Maha Pengasih</div>
+              <p class="wheel-desc-text" id="wheelCenterDesc">Allah melimpahkan kasih sayang-Nya yang teramat luas kepada seluruh makhluk di alam semesta tanpa terkecuali.</p>
+              <div class="wheel-ref-tag" id="wheelCenterRef">QS. Al-Fatihah: 3</div>
+            </div>
+
+            <div class="wheel-center-footer">
+              <span>Buka Detail & Dzikir ↗</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Playback Controls -->
+      <div class="wheel-controls-box">
+        <div class="wheel-main-controls">
+          <button class="wheel-ctrl-btn" id="wheelBtnRestart" title="Ulangi dari nomor 1" aria-label="Ulangi dari awal" onclick="WheelController.restart()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+            <span>Ulangi</span>
+          </button>
+
+          <button class="wheel-ctrl-btn" id="wheelBtnPrev" title="Nama Sebelumnya" aria-label="Sebelumnya" onclick="WheelController.prev()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Sebelumnya</span>
+          </button>
+
+          <button class="wheel-play-btn" id="wheelPlayBtn" title="Play / Pause Baca Otomatis" aria-label="Mulai Baca Otomatis" onclick="WheelController.togglePlay()">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 4.5v15a1 1 0 0 0 1.54.84l11.5-7.5a1 1 0 0 0 0-1.68l-11.5-7.5A1 1 0 0 0 7 4.5Z"/>
+            </svg>
+          </button>
+
+          <button class="wheel-ctrl-btn" id="wheelBtnNext" title="Nama Berikutnya" aria-label="Berikutnya" onclick="WheelController.next()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="m9 18 6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Berikutnya</span>
+          </button>
+
+          <button class="wheel-ctrl-btn" id="wheelBtnAuto" title="Auto 1–99" aria-label="Auto 1–99" onclick="WheelController.autoAll()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            <span>Auto 1–99</span>
+          </button>
+        </div>
+
+        <!-- Progress Scrubber & Countdown Indicator -->
+        <div class="wheel-progress-wrap">
+          <div class="wheel-progress-meta">
+            <span id="wheelProgressLabel">Nama ke-1 dari 99</span>
+            <div class="wheel-step-bar-container" title="Waktu baca nama aktif">
+              <div class="wheel-step-bar-fill" id="wheelStepProgress"></div>
+            </div>
+          </div>
+          <input type="range" class="wheel-scrubber-slider" id="wheelScrubber" min="1" max="99" value="1" step="1" aria-label="Navigasi ke nomor nama" />
+        </div>
+
+        <!-- Duration & Loop Settings -->
+        <div class="wheel-settings-strip">
+          <div class="wheel-setting-group">
+            <span class="wheel-setting-title">Durasi baca:</span>
+            <div class="speed-pills">
+              <button class="speed-pill" data-sec="5" onclick="WheelController.setDuration(5)">5s</button>
+              <button class="speed-pill active" data-sec="8" onclick="WheelController.setDuration(8)">8s</button>
+              <button class="speed-pill" data-sec="10" onclick="WheelController.setDuration(10)">10s</button>
+              <button class="speed-pill" data-sec="15" onclick="WheelController.setDuration(15)">15s</button>
+            </div>
+          </div>
+          <button class="loop-chip" id="wheelLoopBtn" onclick="WheelController.toggleLoop()">
+            Ulangi: Sekali
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav" aria-label="Navigasi Utama">
       <button class="nav-btn active" data-screen="home" onclick="showScreen('home')">
@@ -302,6 +436,15 @@
           <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z" stroke-linejoin="round" />
         </svg>
         <span>Beranda</span>
+      </button>
+
+      <button class="nav-btn" data-screen="wheel" onclick="showScreen('wheel')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 3v5M12 16v5M3 12h5M16 12h5" />
+        </svg>
+        <span>Roda 99</span>
       </button>
 
       <button class="nav-btn" data-screen="list" onclick="showScreen('list')">
@@ -335,6 +478,7 @@
 
   <!-- JavaScript Modules -->
   <script src="./js/data.js"></script>
+  <script src="./js/wheel.js"></script>
   <script src="./js/app.js"></script>
   <script src="./js/pwa.js"></script>
 </body>

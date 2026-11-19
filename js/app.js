@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (paramScreen && ['home', 'list', 'favorites', 'about'].includes(paramScreen)) {
+  if (paramScreen && ['home', 'wheel', 'list', 'favorites', 'about'].includes(paramScreen)) {
     showScreen(paramScreen);
   } else {
     showScreen('home');
@@ -112,6 +112,13 @@ function setupEventListeners() {
 function showScreen(screenId) {
   if (screenId === 'detail') return;
 
+  // Lifecycle check: if leaving wheel screen, pause playback safely
+  if (AppState.currentScreen === 'wheel' && screenId !== 'wheel') {
+    if (window.WheelController && typeof window.WheelController.onLeaveScreen === 'function') {
+      window.WheelController.onLeaveScreen();
+    }
+  }
+
   AppState.currentScreen = screenId;
   document.body.classList.remove('detail-open');
 
@@ -129,6 +136,10 @@ function showScreen(screenId) {
     renderList();
   } else if (screenId === 'favorites') {
     renderFavorites();
+  } else if (screenId === 'wheel') {
+    if (window.WheelController && typeof window.WheelController.onEnterScreen === 'function') {
+      window.WheelController.onEnterScreen();
+    }
   }
 
   updateHomeMeta();
@@ -201,6 +212,8 @@ function goBack() {
     showScreen('favorites');
   } else if (AppState.previousScreen === 'home') {
     showScreen('home');
+  } else if (AppState.previousScreen === 'wheel') {
+    showScreen('wheel');
   } else {
     showScreen('list');
   }
@@ -390,7 +403,10 @@ function renderFavorites() {
 
 // Favorite Management
 function toggleFavorite() {
-  const id = AppState.currentId;
+  toggleFavoriteId(AppState.currentId);
+}
+
+function toggleFavoriteId(id) {
   const idx = AppState.favorites.indexOf(id);
 
   if (idx > -1) {
@@ -410,6 +426,7 @@ function toggleFavorite() {
     renderFavorites();
   }
 }
+window.toggleFavoriteId = toggleFavoriteId;
 
 function updateFavoriteButtons() {
   const isFav = AppState.favorites.includes(AppState.currentId);
