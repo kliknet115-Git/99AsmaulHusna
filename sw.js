@@ -1,5 +1,5 @@
 // Service Worker for 99 Asmaul Husna PWA
-const CACHE_NAME = 'asmaul-husna-v1.2.2';
+const CACHE_NAME = 'asmaul-husna-v1.2.3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -53,9 +53,9 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(event.request.url);
   const isHTML = event.request.mode === 'navigate' ||
-                 event.request.headers.get('accept')?.includes('text/html') ||
-                 url.pathname.endsWith('.html') ||
-                 url.pathname.endsWith('/');
+    event.request.headers.get('accept')?.includes('text/html') ||
+    url.pathname.endsWith('.html') ||
+    url.pathname.endsWith('/');
 
   if (isHTML) {
     // Network First for HTML so user always gets the freshest version when online
