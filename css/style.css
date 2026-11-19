@@ -1584,12 +1584,12 @@ body.detail-open .app-shell {
 }
 
 .wheel-arabic-wrap {
-  margin: 0 0 2px;
+  margin: -6px 0 14px;
 }
 
 .wheel-arabic-text {
   font-family: 'Amiri', 'Noto Naskh Arabic', serif;
-  font-size: clamp(36px, 9.2vw, 52px);
+  font-size: clamp(34px, 8.8vw, 50px);
   font-weight: 700;
   color: var(--navy);
   line-height: 1.35;
@@ -1608,7 +1608,7 @@ body.detail-open .app-shell {
   font-weight: 400;
   color: var(--blue);
   line-height: 1.25;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   letter-spacing: 0.2px;
 }
 
@@ -1617,9 +1617,9 @@ body.detail-open .app-shell {
   font-weight: 400;
   color: var(--gold-deep);
   background: var(--gold-soft);
-  padding: 2.5px 12px;
+  padding: 3px 12px;
   border-radius: 99px;
-  margin: 2px 0 0;
+  margin: 0;
   border: 1px solid rgba(214, 183, 121, 0.35);
   max-width: 92%;
   white-space: nowrap;
