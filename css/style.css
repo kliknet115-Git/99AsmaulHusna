@@ -725,7 +725,7 @@ body.detail-open .app-shell {
 }
 
 .card-arabic {
-  font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", "Geeza Pro", serif;
+  font-family: "Amiri", "Noto Naskh Arabic", serif;
   font-size: clamp(27px, 7.2vw, 31px);
   font-weight: 700;
   line-height: 1.28;
@@ -930,7 +930,7 @@ body.detail-open .app-shell {
 }
 
 .detail-arabic {
-  font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", "Geeza Pro", serif;
+  font-family: "Amiri", "Noto Naskh Arabic", serif;
   color: var(--navy-deep);
   font-size: clamp(38px, 10vw, 54px);
   line-height: 1.28;
