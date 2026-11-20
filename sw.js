@@ -54,6 +54,8 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
+  if (!url.protocol.startsWith('http')) return;
+
   const isHTML = event.request.mode === 'navigate' ||
     event.request.headers.get('accept')?.includes('text/html') ||
     url.pathname.endsWith('.html') ||
@@ -70,27 +72,37 @@ self.addEventListener('fetch', (event) => {
           }
           return networkResponse;
         })
-        .catch(() => {
-          return caches.match(event.request) || caches.match('./index.html') || caches.match('./');
+        .catch(async () => {
+          const match = await caches.match(event.request);
+          if (match) return match;
+          const indexMatch = await caches.match('./index.html');
+          if (indexMatch) return indexMatch;
+          return caches.match('./');
         })
     );
     return;
   }
 
-  // Assets (CSS, JS, images): Stale-While-Revalidate
+  // Assets (CSS, JS, images, fonts): Stale-While-Revalidate
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request)
         .then((networkResponse) => {
-          if (networkResponse && networkResponse.status === 200) {
+          if (networkResponse && (networkResponse.status === 200 || networkResponse.type === 'opaque')) {
             const copy = networkResponse.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
           }
           return networkResponse;
-        })
-        .catch(() => cachedResponse);
+        });
 
-      return cachedResponse || fetchPromise;
+      if (cachedResponse) {
+        // Return cached immediately; update cache in background (catch offline network errors silently)
+        fetchPromise.catch(() => {});
+        return cachedResponse;
+      }
+
+      // Not in cache: fetch from network
+      return fetchPromise;
     })
   );
 });

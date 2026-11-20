@@ -40,7 +40,7 @@ for d in data:
         if s in ref:
             found = True
             break
-    if not found and "Hadits" not in ref:
+    if not found and "Hadits" not in ref and "HR." not in ref:
         print(f"Warning on #{d['number']} {d['latin']}: Reference '{ref}' might not match known surah name!")
 
 print("Check finished.")

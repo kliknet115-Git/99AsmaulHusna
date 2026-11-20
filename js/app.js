@@ -59,6 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  if (paramScreen === 'tasbih') {
+    const targetId = AppState.lastReadId || 1;
+    openDetail(targetId, 'home');
+    return;
+  }
+
   if (paramScreen && ['home', 'wheel', 'list', 'favorites', 'about'].includes(paramScreen)) {
     showScreen(paramScreen);
   } else {
@@ -297,16 +303,33 @@ function setRange(range, btn) {
   renderList();
 }
 
+// Normalize search text for diacritic-insensitive search (e.g. "rahman" matches "Ar-Rahmān")
+function normalizeSearchText(str) {
+  if (!str) return '';
+  return str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[āáàâä]/g, 'a')
+    .replace(/[īíìîï]/g, 'i')
+    .replace(/[ūúùûü]/g, 'u')
+    .replace(/[‘'’`]/g, '');
+}
+
 // Matches query
 function matchesQuery(item, query) {
   if (!query) return true;
-  const q = query.toLowerCase();
+  const qNorm = normalizeSearchText(query);
+  const qRaw = query.toLowerCase();
+
   return (
-    String(item.number).includes(q) ||
-    item.latin.toLowerCase().includes(q) ||
-    item.arabic.toLowerCase().includes(q) ||
-    item.meaning.toLowerCase().includes(q) ||
-    item.description.toLowerCase().includes(q)
+    String(item.number).includes(qRaw) ||
+    normalizeSearchText(item.latin).includes(qNorm) ||
+    (item.slug && item.slug.toLowerCase().replace(/-/g, ' ').includes(qNorm)) ||
+    (item.slug && item.slug.toLowerCase().includes(qNorm)) ||
+    item.arabic.toLowerCase().includes(qRaw) ||
+    normalizeSearchText(item.meaning).includes(qNorm) ||
+    normalizeSearchText(item.description).includes(qNorm)
   );
 }
 

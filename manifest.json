@@ -35,5 +35,28 @@
       "sizes": "any",
       "type": "image/svg+xml"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Daftar 99 Nama",
+      "short_name": "Daftar",
+      "description": "Buka daftar 99 Asmaul Husna",
+      "url": "./index.html?screen=list",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Nama Favorit",
+      "short_name": "Favorit",
+      "description": "Buka koleksi Asmaul Husna favorit",
+      "url": "./index.html?screen=favorites",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Dzikir / Tasbih",
+      "short_name": "Dzikir",
+      "description": "Mulai dzikir Asmaul Husna",
+      "url": "./index.html?screen=tasbih",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    }
   ]
 }

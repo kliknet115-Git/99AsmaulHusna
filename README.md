@@ -123,9 +123,12 @@ Setelah GitHub Pages aktif, Anda bisa langsung mengaksesnya dari smartphone:
 ├── README.md               # Dokumentasi lengkap proyek
 ├── css/
 │   └── style.css           # Styling modern iOS Safari, safe-area, animasi, dark mode
+├── data/
+│   └── asmaul-husna.json   # Basis data JSON 99 Asmaul Husna terverifikasi
 ├── js/
-│   ├── data.js             # Basis data 99 Asmaul Husna lengkap
-│   ├── app.js              # Logika aplikasi (navigasi, pencarian, audio, kuis, tasbih)
+│   ├── data.js             # Basis data 99 Asmaul Husna (format JS modul/global)
+│   ├── wheel.js            # Engine Roda 99 Segmen SVG & pemutar audio otomatis
+│   ├── app.js              # Logika aplikasi (navigasi, pencarian, tasbih, tema)
 │   └── pwa.js              # Registrasi Service Worker & petunjuk instalasi iPhone
 └── icons/
     ├── apple-touch-icon.png# Ikon khusus iPhone Home Screen (180x180)

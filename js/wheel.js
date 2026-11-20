@@ -75,10 +75,10 @@ const WheelController = (() => {
           number: item.number,
           slug: item.slug || '',
           arabic: item.arabic,
-          transliteration: item.latin || '',
+          transliteration: item.transliteration || item.latin || '',
           meaning: item.meaning,
           description: item.description || '',
-          references: item.reference ? [item.reference] : [],
+          references: item.reference ? [item.reference] : (item.references || []),
           verification_status: 'verified'
         }));
       }
@@ -217,9 +217,9 @@ const WheelController = (() => {
       });
     }
 
-    // Keyboard navigation when wheel screen is active
+    // Keyboard navigation when wheel / home screen is active
     window.addEventListener('keydown', (e) => {
-      if (AppState.currentScreen === 'wheel') {
+      if (AppState.currentScreen === 'home' || AppState.currentScreen === 'wheel') {
         if (e.key === 'ArrowLeft') {
           prev();
         } else if (e.key === 'ArrowRight') {
