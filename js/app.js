@@ -206,8 +206,7 @@ function openDetail(id, from = AppState.currentScreen) {
   }
 
   // Prev / Next button states
-  document.getElementById('prevName').disabled = id === 1;
-  document.getElementById('nextName').disabled = id === 99;
+  updateDetailPaginationButtons();
 
   updateFavoriteButtons();
   updateHomeMeta();
@@ -228,10 +227,35 @@ function goBack() {
   }
 }
 
+// Resolve next/prev ID respecting Favorites context when opened from Favorites
+function getAdjacentDetailId(currentId, step) {
+  if (AppState.previousScreen === 'favorites') {
+    const favIds = ASMAUL_HUSNA
+      .filter((item) => AppState.favorites.includes(item.number))
+      .map((item) => item.number);
+    if (step < 0) {
+      const prevIds = favIds.filter((n) => n < currentId);
+      return prevIds.length > 0 ? prevIds[prevIds.length - 1] : null;
+    }
+    const nextIds = favIds.filter((n) => n > currentId);
+    return nextIds.length > 0 ? nextIds[0] : null;
+  }
+
+  const targetId = currentId + step;
+  return targetId >= 1 && targetId <= 99 ? targetId : null;
+}
+
+function updateDetailPaginationButtons() {
+  const prevBtn = document.getElementById('prevName');
+  const nextBtn = document.getElementById('nextName');
+  if (prevBtn) prevBtn.disabled = getAdjacentDetailId(AppState.currentId, -1) === null;
+  if (nextBtn) nextBtn.disabled = getAdjacentDetailId(AppState.currentId, 1) === null;
+}
+
 // Next / Previous Navigation in Detail View
 function moveDetail(step) {
-  const nextId = AppState.currentId + step;
-  if (nextId >= 1 && nextId <= 99) {
+  const nextId = getAdjacentDetailId(AppState.currentId, step);
+  if (nextId !== null) {
     // Add slide transition effect
     const detailCard = document.querySelector('.detail-card');
     if (detailCard) {
@@ -466,6 +490,10 @@ function updateFavoriteButtons() {
 
   if (bottomBtn) {
     bottomBtn.classList.toggle('is-favorite', isFav);
+  }
+
+  if (AppState.currentScreen === 'detail') {
+    updateDetailPaginationButtons();
   }
 }
 
