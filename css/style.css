@@ -1650,19 +1650,24 @@ body.detail-open .app-shell {
 }
 
 .wheel-arabic-wrap {
-  margin: -4px 0 12px;
+  margin: -6px 0 8px;
 }
 
 .wheel-arabic-text {
   font-family: 'Amiri', 'Noto Naskh Arabic', serif;
-  font-size: clamp(32px, 8.2vw, 48px);
+  font-size: clamp(48px, 12.3vw, 72px);
   font-weight: 700;
   color: var(--navy);
-  line-height: 1.35;
+  line-height: 1.25;
   display: block;
   letter-spacing: 0.5px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.wheel-arabic-text.is-compact {
+  font-size: clamp(32px, 8.2vw, 48px);
+  line-height: 1.35;
 }
 
 [data-theme="dark"] .wheel-arabic-text {

@@ -289,7 +289,10 @@ const WheelController = (() => {
     const favBtn = document.getElementById('wheelFavBtn');
 
     if (centerNumber) centerNumber.textContent = `${item.number} / 99`;
-    if (centerArabic) centerArabic.textContent = item.arabic;
+    if (centerArabic) {
+      centerArabic.textContent = item.arabic;
+      centerArabic.classList.toggle('is-compact', item.number === 85);
+    }
     if (centerLatin) centerLatin.textContent = item.transliteration;
     if (centerMeaning) centerMeaning.textContent = item.meaning;
 
