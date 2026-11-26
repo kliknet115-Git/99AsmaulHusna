@@ -145,7 +145,7 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(56px + var(--safe-bottom));
+  padding-bottom: calc(72px + var(--safe-bottom));
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
 }
 
@@ -235,7 +235,7 @@ button {
 }
 
 #home.screen {
-  padding: 4px 12px calc(64px + var(--safe-bottom));
+  padding: 4px 12px calc(78px + var(--safe-bottom));
   box-sizing: border-box;
 }
 
@@ -261,10 +261,10 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 104px - var(--safe-top) - var(--safe-bottom));
-  height: calc(100dvh - 104px - var(--safe-top) - var(--safe-bottom));
-  max-height: calc(100vh - 104px - var(--safe-top) - var(--safe-bottom));
-  max-height: calc(100dvh - 104px - var(--safe-top) - var(--safe-bottom));
+  height: calc(100vh - 136px - var(--safe-top) - var(--safe-bottom));
+  height: calc(100dvh - 136px - var(--safe-top) - var(--safe-bottom));
+  max-height: calc(100vh - 136px - var(--safe-top) - var(--safe-bottom));
+  max-height: calc(100dvh - 136px - var(--safe-top) - var(--safe-bottom));
   overflow: hidden;
 }
 
